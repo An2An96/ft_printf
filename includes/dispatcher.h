@@ -6,14 +6,16 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 14:51:09 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/23 16:55:40 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/23 17:27:09 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DISPATCHER_H
 # define DISPATCHER_H
 
-# include "ft_printf.h"
+# define TYPE_INT		1
+# define TYPE_CHAR		2
+# define TYPE_PTR		3
 
 void	print_number(void *value, char flags, int width, int accuracy, char size);
 void	print_hex(void *value, char flags, int width, int accuracy, char size);
@@ -29,6 +31,7 @@ typedef struct	s_formater {
 
 const t_formatter	dispatcher[] = {
 	{ 'd', &print_number,	TYPE_INT },
+	{ 'i', &print_number,	TYPE_INT },
 	{ 'X', &print_hex,		TYPE_INT },
 	{ 'c', &print_char,		TYPE_CHAR },
 	{ 's', &print_string,	TYPE_PTR },

@@ -6,11 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:09:14 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/23 17:09:40 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/23 17:24:39 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "dispatcher.h"
+#include "ft_printf.h"
 
 void	print_char(void *value, char flags, int width, int accuracy, char size)
 {
