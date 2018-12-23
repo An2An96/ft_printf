@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/23 17:40:58 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/23 20:10:38 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define FLAG_OCTOP		8
 # define FLAG_ZERO		16
 
-typedef enum		e_sp_size
+typedef enum	e_sp_size
 {
 	SIZE_NONE,
 	SIZE_l,
@@ -35,34 +35,33 @@ typedef enum		e_sp_size
 	SIZE_h,
 	SIZE_ll,
 	SIZE_L
-}					t_sp_size;
+}				t_sp_size;
 
-int					ft_printf(const char *format, ...);
+int				ft_printf(const char *format, ...);
 
-void				print_number(
+void			print_number(
 	void *value, char flags, int width, int accuracy, char size);
-void				print_hex(
+void			print_octal(
 	void *value, char flags, int width, int accuracy, char size);
-void				print_char(
+void			print_unsigned(
 	void *value, char flags, int width, int accuracy, char size);
-void				print_string(
+void			print_hex(
 	void *value, char flags, int width, int accuracy, char size);
-void				print_pointer(
+void			print_hex_lower(
+	void *value, char flags, int width, int accuracy, char size);
+void			print_float(
+	void *value, char flags, int width, int accuracy, char size);
+void			print_char(
+	void *value, char flags, int width, int accuracy, char size);
+void			print_string(
+	void *value, char flags, int width, int accuracy, char size);
+void			print_pointer(
 	void *value, char flags, int width, int accuracy, char size);
 
-typedef struct		s_formater {
+typedef struct	s_formater {
 	char		type_specifier;
 	void		(*func)(void*, char, int, int, char);
 	char		arg_type;
-}					t_formatter;
-
-const t_formatter	g_dispatcher[] = {
-	{ 'd', &print_number, TYPE_INT },
-	{ 'i', &print_number, TYPE_INT },
-	{ 'X', &print_hex, TYPE_INT },
-	{ 'c', &print_char, TYPE_CHAR },
-	{ 's', &print_string, TYPE_PTR },
-	{ 'p', &print_pointer, TYPE_PTR }
-};
+}				t_formatter;
 
 #endif
