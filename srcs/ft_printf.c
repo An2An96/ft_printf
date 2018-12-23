@@ -6,11 +6,12 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/23 17:39:50 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/23 20:10:34 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "dispatcher.h"
 
 static char		get_flags(char **body)
 {
@@ -109,65 +110,55 @@ int				ft_printf(const char *format, ...)
 	void*	ptr;
 	char	*body;
 	int		i;
-	int		j;
-	int		in_formatter;
+	char	*start;
 
 	va_start(ap, format);
  
-	i = 0;
-	in_formatter = -1;
 	body = NULL;
-	while (format[i])
+	start = NULL;
+	while (*format)
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{	
-			if (in_formatter == -1)
-				in_formatter = i;
-			else
+			if (start)
 			{
 				ft_putchar('%');
-				in_formatter = -1;
+				start = NULL;
 			}
+			else
+				start = (char*)format;
 		}
 		else
 		{
-			if (in_formatter != -1)
+			if (start)
 			{
-				j = -1;
-				while (++j < 5)
+				i = -1;
+				while (g_dispatcher[++i].type_specifier)
 				{
-					if (format[i] == g_dispatcher[j].type_specifier)
+					if (*format == g_dispatcher[i].type_specifier)
 					{
-						if (g_dispatcher[j].arg_type == TYPE_INT
-							|| g_dispatcher[j].arg_type == TYPE_CHAR)
+						value = va_arg(ap, ssize_t);
+						if (g_dispatcher[i].arg_type == TYPE_PTR)
+							ptr = (void*)value;
+						else
+							ptr = &value;
+						if (format - start > 1)
 						{
-							value = va_arg(ap, ssize_t);
-							ptr = (void*)(&value);
+							body = ft_strnew(format - start - 1);
+							ft_strncpy(body, (start + 1), (format - start - 1));
 						}
-						else if (g_dispatcher[j].arg_type == TYPE_PTR)
-						{
-							ptr = va_arg(ap, void*);
-						}
-						if (i - in_formatter > 1)
-						{
-							body = ft_strnew(i - in_formatter - 1);
-							ft_strncpy(body, (format + in_formatter + 1), (i - in_formatter - 1));
-						}
-						formating(body, ptr, g_dispatcher[j].func);
+						formating(body, ptr, g_dispatcher[i].func);
 						ft_strdel(&body);
-						in_formatter = -1;
+						start = NULL;
 						break ;
 					}
 				}
 			}
 			else
-			{
-				ft_putchar(format[i]);
-			}
+				ft_putchar(*format);
 		}
-		i++;
+		format++;
 	}
-
 	va_end(ap);
 	return (1);
 }

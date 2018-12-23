@@ -7,25 +7,27 @@ INC_DIR = ./includes
 SRC_DIR = ./srcs
 OBJ_DIR = ./obj
 
-SRC = ft_printf.c spec_di.c spec_X.c spec_s.c spec_c.c spec_p.c
+SRC = ft_printf.c spec_di.c spec_o.c spec_u.c spec_xX.c spec_s.c spec_c.c spec_p.c
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 
-all:
-	@mkdir -p $(OBJ_DIR)
-	@$(MAKE) $(NAME)
+vpath %.o $(OBJ_DIR)/
+
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "Building..."
-	@ar rc $@ $<
+	@echo "Building..." '$(OBJ) > $(NAME)'
+	ar rc $@ $^
 	@ranlib $@
 	@echo "Build complete"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "Recompile source file"
+	@mkdir -p $(OBJ_DIR)
 	@gcc $(FLAGS) -I $(INC_DIR) -I $(LIB_DIR)/libft/includes -c $< -o $@
 
-test:
-	gcc $(FLAGS) -I $(LIB_DIR)/libft/includes -I $(INC_DIR) -L. -L libs/libft -lft -lftprintf main.c
+test: $(NAME) 
+	#gcc $(FLAGS) -I $(LIB_DIR)/libft/includes -I $(INC_DIR) -L libs/libft -lft $(SRC_DIR)/*.c
+	gcc $(FLAGS) -I $(LIB_DIR)/libft/includes -I $(INC_DIR) -L libs/libft -lft -L. -lftprintf main.c
 
 clean:
 	@echo "Object files cleared"

@@ -7,8 +7,8 @@ int main()
 	int a = 5;
 	int *b = &a;
 	// ft_printf("%+#10.5hhd %c %s %p", 123, 'A', "Hello World", b);
-	ft_printf("%-10c %p %lX\n", 'A', b, 4503599627370495);
-	printf("%-10c %p %lX\n", 'A', b, 4503599627370495);
+	ft_printf("%% %ld %i %o %u %x %X %s %c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
+	printf("%% %ld %i %o %u %x %X %s %c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
 	// printf("% 10c\n", 'A');
 	// printf("%#10c\n", 'A');
 	// printf("%010c\n", 'A');
