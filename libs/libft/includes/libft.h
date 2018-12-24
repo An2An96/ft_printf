@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:45:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/23 17:05:29 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/24 19:33:52 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
-char				*ft_itoa_base(long long n, int base);
 char				*ft_itoa(int n);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
@@ -92,5 +91,10 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_lstremove(
 	t_list **alst, t_list *el, void (*del)(void *, size_t));
+
+char				*ft_itoa_base(long long n, int base);
+int					ft_pow(int nb, int pow);
+char				*ft_dtoa(long double num, int acc);
+char				*ft_stoa(ssize_t nbr);
 
 #endif
