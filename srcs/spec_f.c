@@ -6,12 +6,26 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:37:13 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/23 18:37:31 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/24 19:38:08 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_float(void *value, char flags, int width, int accuracy, char size)
+void	print_float(void *value, t_spec spec)
 {
+	double		d_value;
+	long double ld_value;
+
+	spec.accuracy = spec.accuracy > 0 ? spec.accuracy : 6;
+	if (spec.size == SIZE_L)
+	{
+		ld_value = *((long double*)value);
+		ft_putstr(ft_dtoa(ld_value, spec.accuracy));
+	}
+	else
+	{
+		d_value = *((double*)value);
+		ft_putstr(ft_dtoa(d_value, spec.accuracy));
+	}
 }

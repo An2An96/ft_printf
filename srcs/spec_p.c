@@ -6,13 +6,13 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:23:45 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/23 18:03:22 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/24 19:26:31 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_pointer(void *value, char flags, int width, int accuracy, char size)
+void	print_pointer(void *value, t_spec spec)
 {
 	char *res = ft_itoa_base((long long)value, 16);
 	if (res)

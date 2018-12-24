@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/24 15:08:33 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/24 19:28:22 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define TYPE_INT		1
 # define TYPE_CHAR		2
 # define TYPE_PTR		3
+# define TYPE_FLOAT		4
 
 # define FLAG_MINUS		1
 # define FLAG_PLUS		2
@@ -37,31 +38,36 @@ typedef enum	e_sp_size
 	SIZE_L
 }				t_sp_size;
 
-int				ft_printf(const char *format, ...);
+typedef struct	s_value_types {
+	size_t		p_value;
+	int			i_value;
+	double		d_value;
+	long double ld_value;
+}				t_value_types;
 
-void			print_number(
-	void *value, char flags, int width, int accuracy, char size);
-void			print_octal(
-	void *value, char flags, int width, int accuracy, char size);
-void			print_unsigned(
-	void *value, char flags, int width, int accuracy, char size);
-void			print_hex(
-	void *value, char flags, int width, int accuracy, char size);
-void			print_hex_lower(
-	void *value, char flags, int width, int accuracy, char size);
-void			print_float(
-	void *value, char flags, int width, int accuracy, char size);
-void			print_char(
-	void *value, char flags, int width, int accuracy, char size);
-void			print_string(
-	void *value, char flags, int width, int accuracy, char size);
-void			print_pointer(
-	void *value, char flags, int width, int accuracy, char size);
+typedef struct	s_spec {
+	char	flags;
+	int		width;
+	int		accuracy;
+	char	size;
+}				t_spec;
 
 typedef struct	s_formater {
 	char		type_specifier;
-	void		(*func)(void*, char, int, int, char);
+	void		(*func)(void*, t_spec);
 	char		arg_type;
 }				t_formatter;
+
+int				ft_printf(const char *format, ...);
+
+void			print_number(void *value, t_spec spec);
+void			print_octal(void *value, t_spec spec);
+void			print_unsigned(void *value, t_spec spec);
+void			print_hex(void *value, t_spec spec);
+void			print_hex_lower(void *value, t_spec spec);
+void			print_float(void *value, t_spec spec);
+void			print_char(void *value, t_spec spec);
+void			print_string(void *value, t_spec spec);
+void			print_pointer(void *value, t_spec spec);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:55:39 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/23 19:04:42 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/24 19:26:40 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	_u_putnbr(unsigned int n)
 	ft_putchar((n % 10) + '0');
 }
 
-void	print_unsigned(void *value, char flags, int width, int accuracy, char size)
+void	print_unsigned(void *value, t_spec spec)
 {
 	_u_putnbr(*((unsigned int*)value));
 }

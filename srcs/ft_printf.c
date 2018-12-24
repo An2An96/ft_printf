@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/23 20:10:34 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/24 19:29:38 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char		get_flags(char **body)
 	char flags;
 
 	flags = 0;
-	if (body)
+	if (body && *body)
 	{
 		while (**body)
 		{
@@ -82,31 +82,42 @@ static char		get_size(char *body)
 	return (size);
 }
 
-static void		formating(char *body, void *value, void (*f)(void *, char, int, int, char))
-{
-	char	flags;
-	int		width;
-	int		accuracy;
-	char	size;
+// static void		formating(char *body, void *value, void (*f)(void *, char, int, int, char))
+// {
+// 	char	flags;
+// 	int		width;
+// 	int		accuracy;
+// 	char	size;
 
-	flags = 0;
-	width = 0;
-	accuracy = 0;
+// 	flags = 0;
+// 	width = 0;
+// 	accuracy = 0;
+// 	if (body)
+// 	{
+// 		flags = get_flags(&body);
+// 		width = ft_atoi(body);
+// 		accuracy = get_accuracy(body);
+// 		size = get_size(body);
+// 	}
+// 	f(value, flags, width, accuracy, size);
+// }
+
+void	parse_spec_body(char *body, t_spec *spec)
+{
 	if (body)
 	{
-		flags = get_flags(&body);
-		width = ft_atoi(body);
-		accuracy = get_accuracy(body);
-		size = get_size(body);
+		spec->flags = get_flags(&body);
+		spec->width = ft_atoi(body);
+		spec->accuracy = get_accuracy(body);
+		spec->size = get_size(body);
 	}
-	f(value, flags, width, accuracy, size);
 }
 
 int				ft_printf(const char *format, ...)
 {
-	
 	va_list	ap;
-	ssize_t	value;
+	t_value_types	value;
+	t_spec			spec;
 	void*	ptr;
 	char	*body;
 	int		i;
@@ -137,17 +148,43 @@ int				ft_printf(const char *format, ...)
 				{
 					if (*format == g_dispatcher[i].type_specifier)
 					{
-						value = va_arg(ap, ssize_t);
-						if (g_dispatcher[i].arg_type == TYPE_PTR)
-							ptr = (void*)value;
-						else
-							ptr = &value;
 						if (format - start > 1)
 						{
 							body = ft_strnew(format - start - 1);
 							ft_strncpy(body, (start + 1), (format - start - 1));
 						}
-						formating(body, ptr, g_dispatcher[i].func);
+						parse_spec_body(body, &spec);
+
+						if (g_dispatcher[i].arg_type == TYPE_PTR)
+						{
+							value.p_value = va_arg(ap, ssize_t);
+							ptr = (void*)value.p_value;
+						}
+						else if (g_dispatcher[i].arg_type == TYPE_INT)
+						{
+							value.i_value = va_arg(ap, int);
+							ptr = (void*)(&value.i_value);
+						}
+						else if (g_dispatcher[i].arg_type == TYPE_FLOAT)
+						{
+							if (spec.size == SIZE_L)
+							{
+								value.ld_value = va_arg(ap, long double);
+								ptr = (void*)(&value.ld_value);
+							}
+							else
+							{
+								value.d_value = va_arg(ap, double);
+								ptr = (void*)(&value.d_value);
+							}
+						}
+						// if (format - start > 1)
+						// {
+						// 	body = ft_strnew(format - start - 1);
+						// 	ft_strncpy(body, (start + 1), (format - start - 1));
+						// }
+						// formating(body, ptr, g_dispatcher[i].func);
+						g_dispatcher[i].func(ptr, spec);
 						ft_strdel(&body);
 						start = NULL;
 						break ;

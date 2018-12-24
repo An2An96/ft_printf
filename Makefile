@@ -7,7 +7,7 @@ INC_DIR = ./includes
 SRC_DIR = ./srcs
 OBJ_DIR = ./obj
 
-SRC = ft_printf.c spec_di.c spec_o.c spec_u.c spec_xX.c spec_s.c spec_c.c spec_p.c
+SRC = ft_printf.c spec_di.c spec_o.c spec_u.c spec_xX.c spec_f.c spec_s.c spec_c.c spec_p.c
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 
 vpath %.o $(OBJ_DIR)/
