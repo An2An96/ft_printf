@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 20:50:53 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/25 21:02:13 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	print_hex(void *value, t_spec spec)
 				ft_putstr("0X");
 			ft_putstr(res);
 		}
+		len = spec.width;
 	}
 	else
 	{
@@ -75,7 +76,8 @@ int	print_hex(void *value, t_spec spec)
 			ft_putstr("0X");
 		ft_putstr(res);
 	}
-	return (len > spec.width ? len : spec.width);
+	ft_strdel(&res);
+	return (len + (2 * spec.flags & FLAG_OCTOP));
 }
 
 int	print_hex_lower(void *value, t_spec spec)
@@ -107,6 +109,7 @@ int	print_hex_lower(void *value, t_spec spec)
 				ft_putstr("0x");
 			ft_putstr(res);
 		}
+		len = spec.width;
 	}
 	else
 	{
@@ -114,5 +117,5 @@ int	print_hex_lower(void *value, t_spec spec)
 			ft_putstr("0x");
 		ft_putstr(res);
 	}
-	return (len > spec.width ? len : spec.width);
+	return (len + (2 * spec.flags & FLAG_OCTOP));
 }
