@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 17:20:11 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/25 20:33:24 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ enum			e_types
 	TYPE_INT,
 	TYPE_CHAR,
 	TYPE_PTR,
-	TYPE_DOUBLE
+	TYPE_DOUBLE,
+	TYPE_UNSIGNED
 };
 
 typedef enum	e_sp_size
@@ -44,7 +45,7 @@ typedef enum	e_sp_size
 
 typedef struct	s_value_types {
 	void		*p_value;
-	long		l_value;
+	long long	l_value;
 	double		d_value;
 	long double ld_value;
 }				t_value_types;

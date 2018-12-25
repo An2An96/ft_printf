@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 17:42:44 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/25 20:44:43 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ static void	int_handler(t_spec *spec, t_value_types *value, va_list *ap)
 	value->p_value = (void*)(&value->l_value);
 }
 
+static void	unsigned_handler(t_spec *spec, t_value_types *value, va_list *ap)
+{
+	if (spec->size == SIZE_l)
+		value->l_value = va_arg(*ap, unsigned long);
+	else if (spec->size == SIZE_ll)
+		value->l_value = va_arg(*ap, unsigned long long);
+	else
+		value->l_value = va_arg(*ap, unsigned int);
+	value->p_value = (void*)(&value->l_value);
+}
+
 static int	specifier_handler(int spec_idx, char **body, va_list *ap)
 {
 	t_value_types	value;
@@ -50,6 +61,8 @@ static int	specifier_handler(int spec_idx, char **body, va_list *ap)
 		int_handler(&spec, &value, ap);
 	else if (g_dispatcher[spec_idx].arg_type == TYPE_DOUBLE)
 		double_handler(&spec, &value, ap);
+	else if (g_dispatcher[spec_idx].arg_type == TYPE_UNSIGNED)
+		unsigned_handler(&spec, &value, ap);
 	return (g_dispatcher[spec_idx].func(value.p_value, spec));
 }
 
