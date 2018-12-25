@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/24 19:28:22 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/25 17:20:11 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,20 @@
 # include <stdarg.h>
 # include "libft.h"
 
-# define TYPE_INT		1
-# define TYPE_CHAR		2
-# define TYPE_PTR		3
-# define TYPE_FLOAT		4
-
 # define FLAG_MINUS		1
 # define FLAG_PLUS		2
 # define FLAG_SPACE		4
 # define FLAG_OCTOP		8
 # define FLAG_ZERO		16
+
+enum			e_types
+{
+	TYPE_NONE,
+	TYPE_INT,
+	TYPE_CHAR,
+	TYPE_PTR,
+	TYPE_DOUBLE
+};
 
 typedef enum	e_sp_size
 {
@@ -39,8 +43,8 @@ typedef enum	e_sp_size
 }				t_sp_size;
 
 typedef struct	s_value_types {
-	size_t		p_value;
-	int			i_value;
+	void		*p_value;
+	long		l_value;
 	double		d_value;
 	long double ld_value;
 }				t_value_types;
@@ -54,20 +58,31 @@ typedef struct	s_spec {
 
 typedef struct	s_formater {
 	char		type_specifier;
-	void		(*func)(void*, t_spec);
+	int			(*func)(void*, t_spec);
 	char		arg_type;
 }				t_formatter;
 
 int				ft_printf(const char *format, ...);
+int				find_specifier(const char ch, const t_formatter *dispatcher);
+void			parse_spec_body(char *body, t_spec *spec);
+char			get_flags(char **body);
+int				get_accuracy(char *body);
+char			get_size(char *body);
 
-void			print_number(void *value, t_spec spec);
-void			print_octal(void *value, t_spec spec);
-void			print_unsigned(void *value, t_spec spec);
-void			print_hex(void *value, t_spec spec);
-void			print_hex_lower(void *value, t_spec spec);
-void			print_float(void *value, t_spec spec);
-void			print_char(void *value, t_spec spec);
-void			print_string(void *value, t_spec spec);
-void			print_pointer(void *value, t_spec spec);
+int				print_percent(void *value, t_spec spec);
+int				print_number(void *value, t_spec spec);
+int				print_octal(void *value, t_spec spec);
+int				print_unsigned(void *value, t_spec spec);
+int				print_hex(void *value, t_spec spec);
+int				print_hex_lower(void *value, t_spec spec);
+int				print_float(void *value, t_spec spec);
+int				print_char(void *value, t_spec spec);
+int				print_string(void *value, t_spec spec);
+int				print_pointer(void *value, t_spec spec);
+
+void			ft_strdel(char **as);
+char			*ft_strlower(char *str);
+char			*ft_strnew(size_t size);
+char			*ft_strsub(char const *s, unsigned int start, size_t len);
 
 #endif
