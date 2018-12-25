@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 17:32:02 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/25 17:42:44 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int			ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	start = NULL;
+	len = 0;
 	while (*format)
 	{
 		if (start)

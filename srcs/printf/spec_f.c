@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:37:13 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 17:05:54 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/25 17:54:16 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,24 @@
 
 int	print_float(void *value, t_spec spec)
 {
-	double		d_value;
-	long double ld_value;
+	char	*str;
+	int		i;
+	char	c;
 
+	c = spec.flags & FLAG_ZERO ? '0' : ' ';
 	spec.accuracy = spec.accuracy > 0 ? spec.accuracy : 6;
 	if (spec.size == SIZE_L)
-	{
-		ld_value = *((long double*)value);
-		ft_putstr(ft_dtoa(ld_value, spec.accuracy));
-	}
+		str = ft_dtoa(*((long double*)value), spec.accuracy);
 	else
-	{
-		d_value = *((double*)value);
-		ft_putstr(ft_dtoa(d_value, spec.accuracy));
-	}
-	return (1);
+		str = ft_dtoa(*((double*)value), spec.accuracy);
+	i = spec.width - ft_strlen(str);
+	if (i > 0 && !(spec.flags & FLAG_MINUS))
+		ft_printchr(i, c);
+	ft_putstr(str);
+	if (i > 0 && (spec.flags & FLAG_MINUS))
+		ft_printchr(i, c);
+	if (i > 0)
+		return (spec.width);
+	else
+		return (spec.width - i);
 }

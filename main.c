@@ -27,8 +27,8 @@ int main()
 	ft_printf("ft_printf: %c\n", 'A');
 	printf("printf: %c\n", 'A');
 
-	ft_printf("1 %.10Lf\n", (long double)1024.2048);
-	printf("2 %.10Lf\n", (long double)1024.2048);
+	ft_printf("3 %-20Lf-\n", (long double)1024.2048);
+	printf("4 %-20Lf-\n", (long double)1024.2048);
 	// printf("% 10c\n", 'A');
 	// printf("%#10c\n", 'A');
 	// printf("%010c\n", 'A');

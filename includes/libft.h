@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:45:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 16:50:57 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/25 17:55:04 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ char				*ft_itoa_base(long long n, int base);
 long double			ft_pow(long double num, int power);
 char				*ft_dtoa(long double num, int acc);
 char				*ft_stoa(ssize_t nbr);
+void				ft_printchr(int counts, char c);
 
 #endif
