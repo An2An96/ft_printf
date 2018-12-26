@@ -13,24 +13,20 @@ int main()
 	// ft_printf("%u\n", -9223372036854775808);
 	// printf("%u\n", -9223372036854775808);
 
-<<<<<<< Updated upstream
 
 	if (ft_printf("%#x %#llX\n", 42, 9223372036854775807) == printf("%#x %#llX\n", 42, 9223372036854775807))
 	{
-		ft_putstr("return error");
+		ft_putstr("return error\n");
 	}
 
 	ft_printf("%10s world!\n", "Hello");
 	printf("%10s world!\n", "Hello");
-=======
-	// ft_printf("1: %x\n", -42);
-	// printf("2: %x\n", -42);
->>>>>>> Stashed changes
 
 	// ft_printf("%d\n", 9123372036854775807);
 	// printf("%d\n", 9123372036854775807);
 
-	ft_printf("%+5.10Lx %X\n", 1024, 2048);
+	ft_printf("1: %+5.10Lx %X\n", 1024, 2048);
+	printf("2: %+5.10Lx %X\n", 1024, 2048);
 	ft_printf("%ld\n", -2147483648);
 	ft_printf("%i\n", 2147483647);
 	ft_printf("%o\n", 45035996);
