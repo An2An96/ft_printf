@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 17:52:43 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/26 14:05:12 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/26 20:26:18 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_printf.h"
+#include "libft.h"
 
-static size_t	ft_digits(size_t num, int base)
+static long long	ft_digits(long long num, int base)
 {
 	int	i;
 
@@ -28,11 +27,11 @@ static size_t	ft_digits(size_t num, int base)
 	return (i);
 }
 
-char			*ft_uitoa_base(size_t num, int base)
+char				*ft_uitoa_base(long long num, int base)
 {
-	char	*res;
-	size_t	digs;
-	ssize_t	i;
+	char		*res;
+	long long	digs;
+	int			i;
 
 	digs = ft_digits(num, base);
 	res = (char *)malloc(sizeof(char) * (digs + 1));
