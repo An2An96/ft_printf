@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 19:09:18 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/26 15:17:25 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,18 @@
 
 int	print_string(void *value, t_spec spec)
 {
-	int len;
+	int		len;
+	char	*res;
 
-	len = ft_strlen(value);
-	if (spec.width > 1 && spec.width - len > 0)
-	{
-		if (spec.flags & FLAG_MINUS)
-		{
-			ft_putstr((char*)value);
-			ft_printchr(spec.width - len, ' ');
-		}
-		else
-		{
-			ft_printchr(spec.width - len, ' ');
-			ft_putstr((char*)value);
-		}
-	}
+	if (!value)
+		value = ft_strjoin(value, "(null)");
 	else
-		ft_putstr((char*)value);
-	return (len > spec.width ? len : spec.width);
+		value = ft_strdup(value);
+	if (spec.accuracy > 0)
+		res = ft_strsub(value, 0, spec.accuracy);
+	else
+		res = value;
+	len = ft_str_fixlen(&res, ' ', spec.width, spec.flags & FLAG_MINUS);
+	ft_putstr(res);
+	return (len);
 }
