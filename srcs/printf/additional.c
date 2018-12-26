@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   additional.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 15:09:37 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 16:54:26 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/26 16:58:56 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		get_accuracy(char *body)
 
 	if ((start = ft_strchr(body, '.')))
 		return (ft_atoi(start + 1));
-	return (1);
+	return (0);
 }
 
 char	get_size(char *body)
