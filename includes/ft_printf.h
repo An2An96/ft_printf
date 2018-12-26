@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 19:33:28 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/26 20:23:57 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include "libft.h"
+
+# define CHECK_FLAG(f)	(spec.flags & f)
 
 # define FLAG_MINUS		1
 # define FLAG_PLUS		2
@@ -85,9 +87,5 @@ void			ft_strdel(char **as);
 char			*ft_strlower(char *str);
 char			*ft_strnew(size_t size);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
-
-char			*ft_uitoa_base(size_t num, int base);
-
-void			print_ox(char **res, int *ox);
 
 #endif
