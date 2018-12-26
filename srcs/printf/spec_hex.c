@@ -6,7 +6,7 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 20:11:55 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/26 20:38:46 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int			print_hex(void *value, t_spec spec)
 	res = ft_strdup("");
 	ft_getstr(&res, value, spec);
 	ft_putstr(res);
+	free(res);
 	return (ft_strlen(res));
 }
 
@@ -90,5 +91,6 @@ int			print_hex_upper(void *value, t_spec spec)
 	ft_getstr(&res, value, spec);
 	ft_strupper(res);
 	ft_putstr(res);
+	free(res);
 	return (ft_strlen(res));
 }
