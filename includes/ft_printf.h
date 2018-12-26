@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 20:33:24 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/26 15:01:41 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int				print_number(void *value, t_spec spec);
 int				print_octal(void *value, t_spec spec);
 int				print_unsigned(void *value, t_spec spec);
 int				print_hex(void *value, t_spec spec);
-int				print_hex_lower(void *value, t_spec spec);
+int				print_hex_upper(void *value, t_spec spec);
 int				print_float(void *value, t_spec spec);
 int				print_char(void *value, t_spec spec);
 int				print_string(void *value, t_spec spec);
@@ -85,5 +85,7 @@ void			ft_strdel(char **as);
 char			*ft_strlower(char *str);
 char			*ft_strnew(size_t size);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
+
+char			*ft_uitoa_base(size_t num, int base);
 
 #endif

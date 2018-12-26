@@ -23,7 +23,8 @@ SRC =	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_pow.c ft_stoa.c \
 		ft_printf.c additional.c \
 		spec_percent.c spec_di.c spec_o.c spec_u.c spec_hex.c \
-		spec_f.c spec_s.c spec_c.c spec_p.c
+		spec_f.c spec_s.c spec_c.c spec_p.c \
+		ft_uitoa_base.c
 		
 		#ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c
 		#ft_lstmap.c ft_lstpush.c ft_lstremove.c

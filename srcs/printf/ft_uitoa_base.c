@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 17:52:43 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/25 18:55:15 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/26 14:05:12 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static size_t	ft_digits(size_t num, int base)
 	return (i);
 }
 
-char			*ft_convert(size_t num, int base)
+char			*ft_uitoa_base(size_t num, int base)
 {
 	char	*res;
 	size_t	digs;
