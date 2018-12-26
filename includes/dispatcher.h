@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 14:51:09 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 14:17:07 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/26 17:14:46 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ const t_formatter	g_dispatcher[] = {
 	{ 'i', &print_number, TYPE_INT },
 	{ 'o', &print_octal, TYPE_UNSIGNED },
 	{ 'u', &print_unsigned, TYPE_UNSIGNED },
+	{ 'U', &print_unsigned, TYPE_UNSIGNED },
 	{ 'x', &print_hex, TYPE_UNSIGNED },
 	{ 'X', &print_hex_upper, TYPE_UNSIGNED },
 	{ 'f', &print_float, TYPE_DOUBLE },
