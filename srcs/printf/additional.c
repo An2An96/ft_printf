@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 15:09:37 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 16:37:44 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/26 16:35:03 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int		get_accuracy(char *body)
 {
 	char *start;
 
-	if ((start = ft_strchr(body, '.')))
+	if ((start = ft_strchr(body, '.')) && ft_isdigit(*(start + 1)))
 		return (ft_atoi(start + 1));
-	return (0);
+	return (1);
 }
 
 char	get_size(char *body)
