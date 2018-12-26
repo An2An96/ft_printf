@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spec_hex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 16:58:25 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/26 17:11:57 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,6 @@ static void	ft_strupper(char *str)
 	}
 }
 
-// static char	*ft_strfromchr(char c, size_t n)
-// {
-// 	char	*res;
-
-// 	if ((res = (char *)malloc(sizeof(char) * (n + 1))) == NULL)
-// 		return (NULL);
-// 	res[n] = '\0';
-// 	res[0] = c;
-// 	while (--n)
-// 	{
-// 		res[n] = c;
-// 	}
-// 	return (res);
-// }
-
 static char	*ft_getstr(void *value, t_spec spec)
 {
 	char	*res;
@@ -52,12 +37,12 @@ static char	*ft_getstr(void *value, t_spec spec)
 	res = NULL;
 	if (spec.accuracy == 0)
 	{
-		if (spec.flags & FLAG_MINUS)
-			ft_str_fixlen(&res, c, spec.width, ' ');
-		else if (spec.flags & FLAG_ZERO)
-			ft_str_fixlen(&res, c, spec.width, '0');
 		if (res == NULL)
 			res = ft_strdup("");
+		if ((spec.flags & FLAG_ZERO) && !(spec.flags & FLAG_MINUS))
+			ft_str_fixlen(&res, c, spec.width, '0');
+		else
+			ft_str_fixlen(&res, c, spec.width, ' ');
 		return (res);
 	}
 	if (spec.size == SIZE_l)
