@@ -6,7 +6,7 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 19:34:29 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/26 20:11:55 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,40 +43,41 @@ static int	checkacc(void *value, t_spec *spec, char **res, int *ox)
 		return (0);
 }
 
-static char	*ft_getstr(void *value, t_spec spec)
+static void	ft_getstr(char **res, void *value, t_spec spec)
 {
-	char	*res;
-	int		len;
 	char	c;
 	int		ox;
+	char	*buf;
 
 	c = ' ';
 	if ((spec.flags & FLAG_ZERO) && !(spec.flags & FLAG_MINUS))
 		c = '0';
-	res = ft_strdup("");
-	checkacc(value, &spec, &res, &ox);
-	len = ft_strlen(res) + ox;
-	if (spec.width > 1 && spec.width - len > 0)
+	checkacc(value, &spec, res, &ox);
+	if (spec.width > 1 && spec.width - (ft_strlen(*res) + ox) > 0)
 	{
-		if (spec.flags & FLAG_MINUS)
-			ft_str_fixlen(&res, c, spec.width - ox, 1);
-		else
+		if (ox != 0 && c == ' ')
 		{
-			if (ox != 0 && c == ' ')
-				print_ox(&res, &ox);
-			ft_str_fixlen(&res, c, spec.width - ox, 0);
+			buf = *res;
+			*res = ft_strjoin("0x", *res);
+			free(buf);
+			ox = 0;
 		}
+		ft_str_fixlen(res, c, spec.width - ox, (spec.flags & FLAG_MINUS));
 	}
 	if (ox != 0)
-		print_ox(&res, &ox);
-	return (res);
+	{
+		buf = *res;
+		*res = ft_strjoin("0x", *res);
+		free(buf);
+	}
 }
 
 int			print_hex(void *value, t_spec spec)
 {
 	char	*res;
 
-	res = ft_getstr(value, spec);
+	res = ft_strdup("");
+	ft_getstr(&res, value, spec);
 	ft_putstr(res);
 	return (ft_strlen(res));
 }
@@ -85,7 +86,8 @@ int			print_hex_upper(void *value, t_spec spec)
 {
 	char	*res;
 
-	res = ft_getstr(value, spec);
+	res = ft_strdup("");
+	ft_getstr(&res, value, spec);
 	ft_strupper(res);
 	ft_putstr(res);
 	return (ft_strlen(res));
