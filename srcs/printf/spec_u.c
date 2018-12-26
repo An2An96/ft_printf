@@ -6,26 +6,25 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:55:39 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 20:20:04 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/26 16:50:15 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_putnbr_unsigned(unsigned long long n)
-{
-	if (n / 10)
-		ft_putnbr_unsigned((n / 10));
-	ft_putchar((n % 10) + '0');
-}
-
 int		print_unsigned(void *value, t_spec spec)
 {
+	int len;
+	char *res;
+
 	if (spec.size == SIZE_l)
-		ft_putnbr_unsigned(*((unsigned long*)value));
+		res = ft_uitoa_base(*((unsigned long*)value), 10);
 	else if (spec.size == SIZE_ll)
-		ft_putnbr_unsigned(*((unsigned long long*)value));
+		res = ft_uitoa_base(*((unsigned long long*)value), 10);
 	else
-		ft_putnbr_unsigned(*((unsigned int*)value));
-	return (1);
+		res = ft_uitoa_base(*((unsigned int*)value), 10);
+	len = ft_str_fixlen(&res, '0', spec.accuracy, 0);
+	len = ft_str_fixlen(&res, ' ', spec.width, spec.flags & FLAG_MINUS);
+	ft_putstr(res);
+	return (len);
 }
