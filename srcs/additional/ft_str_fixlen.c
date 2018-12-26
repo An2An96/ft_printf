@@ -6,15 +6,15 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 14:36:48 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 15:17:52 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/26 16:21:19 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_str_fixlen(char **str, char ch, size_t width, int side)
+int	ft_str_fixlen(char **str, char ch, int width, int side)
 {
-	size_t	len;
+	int		len;
 	char	*new;
 
 	len = ft_strlen(*str);
