@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:45:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 16:18:52 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/26 19:41:46 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ char				*ft_dtoa(long double num, int acc);
 char				*ft_stoa(ssize_t nbr);
 void				ft_printchr(int counts, char c);
 int					ft_str_fixlen(char **str, char ch, int width, int side);
+
+void				ft_strupper(char *str);
 
 #endif

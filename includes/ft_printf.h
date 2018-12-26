@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 16:16:03 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/26 19:33:28 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ char			*ft_strnew(size_t size);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 
 char			*ft_uitoa_base(size_t num, int base);
+
+void			print_ox(char **res, int *ox);
 
 #endif

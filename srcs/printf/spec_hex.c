@@ -6,80 +6,69 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 17:11:57 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/26 19:34:29 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_strupper(char *str)
+static char	*ft_iina(void *value, char size)
 {
-	int	i;
+	char	*res;
 
-	i = -1;
-	while (str[++i] != '\0')
+	if (size == SIZE_l)
+		res = ft_uitoa_base(*((unsigned long*)value), 16);
+	else if (size == SIZE_ll)
+		res = ft_uitoa_base(*((unsigned long long*)value), 16);
+	else
+		res = ft_uitoa_base(*((unsigned int*)value), 16);
+	return (res);
+}
+
+static int	checkacc(void *value, t_spec *spec, char **res, int *ox)
+{
+	char	*buf;
+
+	*ox = 0;
+	if (spec->accuracy != 0)
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] -= 32;
+		buf = *res;
+		*res = ft_iina(value, spec->size);
+		free(buf);
+		if ((spec->flags & FLAG_OCTOP) && (*((long long*)value) != 0))
+			*ox = 2;
+		return (1);
 	}
+	else
+		return (0);
 }
 
 static char	*ft_getstr(void *value, t_spec spec)
 {
 	char	*res;
-	char	*buf;
 	int		len;
 	char	c;
 	int		ox;
 
 	c = ' ';
-	ox = 0;
-	res = NULL;
-	if (spec.accuracy == 0)
-	{
-		if (res == NULL)
-			res = ft_strdup("");
-		if ((spec.flags & FLAG_ZERO) && !(spec.flags & FLAG_MINUS))
-			ft_str_fixlen(&res, c, spec.width, '0');
-		else
-			ft_str_fixlen(&res, c, spec.width, ' ');
-		return (res);
-	}
-	if (spec.size == SIZE_l)
-		res = ft_uitoa_base(*((unsigned long*)value), 16);
-	else if (spec.size == SIZE_ll)
-		res = ft_uitoa_base(*((unsigned long long*)value), 16);
-	else
-		res = ft_uitoa_base(*((unsigned int*)value), 16);
-	if ((spec.flags & FLAG_OCTOP) && (*((long long*)value) != 0) )
-		ox = 2;
+	if ((spec.flags & FLAG_ZERO) && !(spec.flags & FLAG_MINUS))
+		c = '0';
+	res = ft_strdup("");
+	checkacc(value, &spec, &res, &ox);
 	len = ft_strlen(res) + ox;
 	if (spec.width > 1 && spec.width - len > 0)
 	{
 		if (spec.flags & FLAG_MINUS)
-		{
 			ft_str_fixlen(&res, c, spec.width - ox, 1);
-		}
 		else
 		{
-			if (spec.flags & FLAG_ZERO)
-				c = '0';
-			else if (ox != 0)
-			{
-				buf = res;
-				res = ft_strjoin("0x", res);
-				free(buf);
-				ox = 0;
-			}
+			if (ox != 0 && c == ' ')
+				print_ox(&res, &ox);
 			ft_str_fixlen(&res, c, spec.width - ox, 0);
 		}
 	}
 	if (ox != 0)
-	{
-		buf = res;
-		res = ft_strjoin("0x", res);
-		free(buf);
-	}
+		print_ox(&res, &ox);
 	return (res);
 }
 
