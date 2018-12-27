@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 12:21:59 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 14:28:15 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef enum	e_sp_size
 	SIZE_hh,
 	SIZE_h,
 	SIZE_ll,
+	SIZE_z,
 	SIZE_L
 }				t_sp_size;
 
@@ -50,6 +51,7 @@ typedef struct	s_value_types {
 	long long	l_value;
 	double		d_value;
 	long double ld_value;
+	ssize_t		z_value;
 }				t_value_types;
 
 typedef struct	s_spec {
@@ -65,12 +67,16 @@ typedef struct	s_formater {
 	char		arg_type;
 }				t_formatter;
 
-int				ft_printf(const char *format, ...);
 int				find_specifier(const char ch, const t_formatter *dispatcher);
 void			parse_spec_body(char *body, t_spec *spec);
 char			get_flags(char **body);
 int				get_accuracy(char *body);
 char			get_size(char *body);
+
+void			double_handler(t_spec *spec, t_value_types *value, va_list *ap);
+void			int_handler(t_spec *spec, t_value_types *value, va_list *ap);
+void			unsigned_handler(
+	t_spec *spec, t_value_types *value, va_list *ap);
 
 int				print_percent(void *value, t_spec *spec);
 int				print_number(void *value, t_spec *spec);
@@ -82,10 +88,5 @@ int				print_float(void *value, t_spec *spec);
 int				print_char(void *value, t_spec *spec);
 int				print_string(void *value, t_spec *spec);
 int				print_pointer(void *value, t_spec *spec);
-
-void			ft_strdel(char **as);
-char			*ft_strlower(char *str);
-char			*ft_strnew(size_t size);
-char			*ft_strsub(char const *s, unsigned int start, size_t len);
 
 #endif

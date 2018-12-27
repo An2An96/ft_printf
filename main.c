@@ -18,42 +18,9 @@ int main()
 	// 	ft_putstr("return error");
 	// }
 
-	// ft_printf("1: %x\n", -42);
-	// printf("2: %x\n", -42);
 
-	// ft_printf("%d\n", 9123372036854775807);
-	// printf("%d\n", 9123372036854775807);
+	ft_printf("%#O", 1);
+	printf("%#O", 1)
 
-	// ft_printf("%+5.10Lx %X\n", 1024, 2048);
-	// ft_printf("%ld\n", -2147483648);
-	// ft_printf("%i\n", 2147483647);
-	// ft_printf("%o\n", 45035996);
-
-	// ft_printf("%-5.2s|\n", NULL);
-	// printf("%-5.2s|\n", NULL);
-
-	ft_printf("%lld|\n", -9223372036854775808);
-	printf("%lld|\n", -9223372036854775808);
-
-	ft_printf("% d|\n", -42);
-	printf("% d|\n", -42);
-
-	ft_printf("@moulitest: %.d %.0d|\n", 42, 43);
-	printf("@moulitest: %.d %.0d|\n", 42, 43);
-
-	ft_printf("@moulitest: %5.0d %5.0d|\n", 0, 0);
-	printf("@moulitest: %5.0d %5.0d|\n", 0, 0);
-
-	ft_printf("%9s: %-15d|\n", "ft_printf", 2500);
-	printf("%9s: %-15d|\n", "printf", 2500);
-
-	ft_printf("%9s: %o %#.o|\n", "ft_printf", -2500, 0);
-	printf("%9s: %o %#.o|\n", "printf", -2500, 0);
-
-	ft_printf("3 %-20Lf-\n", (long double)1024.2048);
-	printf("4 %-20Lf-\n", (long double)1024.2048);
-	// printf("% 10c\n", 'A');
-	// printf("%#10c\n", 'A');
-	// printf("%010c\n", 'A');
 	return (0);
 }
