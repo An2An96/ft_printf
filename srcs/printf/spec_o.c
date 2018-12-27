@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:28:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 12:24:53 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 12:29:48 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int			print_octal(void *value, t_spec *spec)
 		len = ft_str_fixlen(&res, spec->flags & FLAG_ZERO ? '0' : ' ',
 			spec->width, 0);
 	ft_putstr(res);
+	free(res);
 	return (len);
 }
