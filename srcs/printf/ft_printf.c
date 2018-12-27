@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 20:05:39 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 12:20:21 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	specifier_handler(int spec_idx, char **body, va_list *ap)
 		double_handler(&spec, &value, ap);
 	else if (g_dispatcher[spec_idx].arg_type == TYPE_UNSIGNED)
 		unsigned_handler(&spec, &value, ap);
-	return (g_dispatcher[spec_idx].func(value.p_value, spec));
+	return (g_dispatcher[spec_idx].func(value.p_value, &spec));
 }
 
 int			ft_printf(const char *format, ...)

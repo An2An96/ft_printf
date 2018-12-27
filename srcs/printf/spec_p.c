@@ -6,13 +6,13 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:23:45 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/25 18:57:11 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 12:25:07 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_pointer(void *value, t_spec spec)
+int	print_pointer(void *value, t_spec *spec)
 {
 	char *res;
 

@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 20:23:57 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 12:21:59 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include "libft.h"
 
-# define CHECK_FLAG(f)	(spec.flags & f)
+# define CHECK_FLAG(f)	(spec->flags & f)
 
 # define FLAG_MINUS		1
 # define FLAG_PLUS		2
@@ -61,7 +61,7 @@ typedef struct	s_spec {
 
 typedef struct	s_formater {
 	char		type_specifier;
-	int			(*func)(void*, t_spec);
+	int			(*func)(void*, t_spec*);
 	char		arg_type;
 }				t_formatter;
 
@@ -72,16 +72,16 @@ char			get_flags(char **body);
 int				get_accuracy(char *body);
 char			get_size(char *body);
 
-int				print_percent(void *value, t_spec spec);
-int				print_number(void *value, t_spec spec);
-int				print_octal(void *value, t_spec spec);
-int				print_unsigned(void *value, t_spec spec);
-int				print_hex(void *value, t_spec spec);
-int				print_hex_upper(void *value, t_spec spec);
-int				print_float(void *value, t_spec spec);
-int				print_char(void *value, t_spec spec);
-int				print_string(void *value, t_spec spec);
-int				print_pointer(void *value, t_spec spec);
+int				print_percent(void *value, t_spec *spec);
+int				print_number(void *value, t_spec *spec);
+int				print_octal(void *value, t_spec *spec);
+int				print_unsigned(void *value, t_spec *spec);
+int				print_hex(void *value, t_spec *spec);
+int				print_hex_upper(void *value, t_spec *spec);
+int				print_float(void *value, t_spec *spec);
+int				print_char(void *value, t_spec *spec);
+int				print_string(void *value, t_spec *spec);
+int				print_pointer(void *value, t_spec *spec);
 
 void			ft_strdel(char **as);
 char			*ft_strlower(char *str);
