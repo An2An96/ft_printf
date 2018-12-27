@@ -6,7 +6,7 @@ OBJS_DIR = ./obj
 
 C_INCLUDE_PATH += includes/ libft/includes
 
-FLAGS = -g #-Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 FLAGS += $(foreach path,$(C_INCLUDE_PATH),-I$(path))
 
 
