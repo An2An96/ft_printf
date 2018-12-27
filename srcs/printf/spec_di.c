@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spec_di.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:22:47 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 18:32:50 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 21:40:26 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,23 @@ int			print_number(void *value, t_spec *spec, int *len)
 {
 	char	*res;
 	int		tmp;
+	int	s;
 
+	s = ((CHECK_FLAG(FLAG_SPACE) && !CHECK_FLAG(FLAG_PLUS)) ? 1 : 0);
 	if (spec->accuracy == -1
 		&& CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
 	{
 		if (*((long long*)value) < 0 || CHECK_FLAG(FLAG_PLUS))
 			spec->width--;
 		spec->accuracy = spec->accuracy > spec->width ?
-			spec->accuracy : spec->width;
+			spec->accuracy : spec->width - s;
 		spec->width = 0;
 	}
 	res = get_value(value, spec);
 	if (!res)
 		return (0);
 	tmp = ft_str_fixlen(&res, ' ', spec->width, CHECK_FLAG(FLAG_MINUS));
-	if (!spec->width && spec->flags == FLAG_SPACE && *((long long*)value) > 0)
+	if (!spec->width && CHECK_FLAG(FLAG_SPACE) && !CHECK_FLAG(FLAG_PLUS) && *((long long*)value) >= 0)
 	{
 		ft_putchar(' ');
 		tmp++;

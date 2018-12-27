@@ -6,13 +6,13 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 18:03:21 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 18:08:25 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/27 20:35:45 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static long long	ft_digits(long long num, int base)
+static int	ft_digits(unsigned long long num, int base)
 {
 	int	i;
 
@@ -27,10 +27,10 @@ static long long	ft_digits(long long num, int base)
 	return (i);
 }
 
-char				*pf_uitoa_base(long long num, int base, int len)
+char				*pf_uitoa_base(unsigned long long num, int base, int len)
 {
 	char		*res;
-	long long	digs;
+	int	digs;
 	int			i;
 
 	digs = ft_digits(num, base);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spec_hex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 19:44:26 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 20:43:50 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ static char	*ft_iina(void *value, char size, int len)
 
 	if (size == SIZE_l)
 		res = pf_uitoa_base(*((unsigned long*)value), 16, len);
-	else if (size == SIZE_ll)
+	else if (size == SIZE_ll || size == SIZE_z)
 		res = pf_uitoa_base(*((unsigned long long*)value), 16, len);
+	else if (size == SIZE_hh)
+		res = pf_uitoa_base(*((unsigned char*)value), 16, len);
+	else if (size == SIZE_h)
+		res = pf_uitoa_base(*((unsigned short int*)value), 16, len);
 	else
 		res = pf_uitoa_base(*((unsigned int*)value), 16, len);
 	return (res);
@@ -65,7 +69,7 @@ static void	ft_getstr(char **res, void *value, t_spec *spec)
 			free(buf);
 			ox = 0;
 		}
-		ft_str_fixlen(res, ' ', spec->width - ox, (spec->flags & FLAG_MINUS));
+		ft_str_fixlen(res, ' ', spec->width - ox, CHECK_FLAG(FLAG_MINUS));
 	}
 	if (ox != 0)
 	{

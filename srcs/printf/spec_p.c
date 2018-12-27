@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spec_p.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:23:45 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 20:14:18 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 20:26:27 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	print_pointer(void *value, t_spec *spec, int *len)
 		*len += ft_strlen(res);
 	}
 	else
-		ft_putstr("0x");
+		ft_putstr("0x0");
 	*len += 2;
 	return (1);
 }
