@@ -6,7 +6,7 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:23:45 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 20:26:27 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/27 21:55:32 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ int	print_pointer(void *value, t_spec *spec, int *len)
 		*len += ft_strlen(res);
 	}
 	else
+	{
+		res = ft_strdup("");
+		ft_str_fixlen(&res, ' ', spec->width - 3, 1);
+		ft_putstr(res);
 		ft_putstr("0x0");
+	}
 	*len += 2;
 	return (1);
 }
