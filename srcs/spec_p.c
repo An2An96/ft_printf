@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:23:45 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 23:30:51 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 23:41:56 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	print_pointer(void *value, t_spec *spec, int *len)
 	value = ft_strjoin("0x", ft_strlower(res));
 	free(res);
 	res = value;
-	ft_str_fixlen(&res, ' ', spec->width, 0);
+	ft_str_fixlen(&res, ' ', spec->width, CHECK_FLAG(FLAG_MINUS));
 	ft_putstr(res);
 	*len += ft_strlen(res);
 	free(res);
