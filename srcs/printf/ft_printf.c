@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 18:30:04 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 20:03:58 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	parse_spec_body(char *body, t_spec *spec)
 }
 
 /*
-**	spec_idx == 5 -- для обработки синонима %U = %lu
+**	spec_idx == 4 -- для обработки синонима %O = %lo
+**	spec_idx == 6 -- для обработки синонима %U = %lu
 */
 
 static int	specifier_handler(int spec_idx, char **body, va_list *ap, int *len)
@@ -32,7 +33,7 @@ static int	specifier_handler(int spec_idx, char **body, va_list *ap, int *len)
 
 	parse_spec_body(*body, &spec);
 	ft_strdel(body);
-	if (spec_idx == 5)
+	if (spec_idx == 4 || spec_idx == 6)
 		spec.size = SIZE_l;
 	if (g_dispatcher[spec_idx].arg_type == TYPE_PTR)
 		value.p_value = va_arg(*ap, void*);

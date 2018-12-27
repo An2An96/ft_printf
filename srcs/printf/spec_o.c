@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:28:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 18:24:19 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 20:06:28 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ static char	*get_value(void *value, t_spec *spec)
 			res = ft_uitoa_base(*((unsigned long long*)value), 8);
 		else if (spec->size == SIZE_z)
 			res = ft_uitoa_base(*((ssize_t*)value), 8);
+		else if (spec->size == SIZE_h)
+			res = ft_uitoa_base(*((unsigned short int*)value), 8);
+		else if (spec->size == SIZE_hh)
+			res = ft_uitoa_base(*((unsigned char*)value), 8);
 		else
 			res = ft_uitoa_base(*((unsigned int*)value), 8);
 		ft_str_fixlen(&res, '0', spec->accuracy, 0);

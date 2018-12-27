@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:45:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 14:21:41 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 20:07:29 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int					ft_lstremove(
 	t_list **alst, t_list *el, void (*del)(void *, size_t));
 
 char				*ft_itoa_base(long long n, int base);
-char				*ft_uitoa_base(long long num, int base);
+char				*ft_uitoa_base(unsigned long long num, int base);
 long double			ft_pow(long double num, int power);
 char				*ft_dtoa(long double num, int acc);
 char				*ft_stoa(ssize_t nbr);

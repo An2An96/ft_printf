@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 18:23:29 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 20:21:50 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			print_string(void *value, t_spec *spec, int *len)
 	int		tmp;
 	char	*res;
 
-	if (!value)
+	if (!value && !spec->width)
 		value = ft_strjoin(value, "(null)");
 	else
 		value = ft_strdup(value);
@@ -52,7 +52,10 @@ int			print_string(void *value, t_spec *spec, int *len)
 		res = value;
 	if (!res)
 		return (0);
-	tmp = ft_str_fixlen(&res, ' ', spec->width, spec->flags & FLAG_MINUS);
+	if (CHECK_FLAG(FLAG_MINUS))
+		tmp = ft_str_fixlen(&res, ' ', spec->width, 1);
+	else
+		tmp = ft_str_fixlen(&res, CHECK_FLAG(FLAG_ZERO) ? '0' : ' ', spec->width, 0);
 	ft_putstr(res);
 	free(res);
 	*len += tmp;

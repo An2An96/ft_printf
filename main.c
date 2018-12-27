@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <float.h>
+#include <limits.h>
 #include "ft_printf.h"
 
 int main()
@@ -28,16 +29,16 @@ int main()
 
 	// ft_printf("%030.20lld\n", 9223372036854775807);
 
-	int a;
-	int b;
+	ft_printf("{%05.s}", 0);
+	printf("{%05.s}", 0);
 
 	// for(int i = 0; i < 30; i++)
 	// 	printf("%c\n", i);
 
 	// b = ft_printf("ft_printf: %0100llb %n Hello Man\n", 9223372036854775807, &a);
 	// printf("%d %d", a, b);
-	ft_printf("ft_printf: %030llb\n", -92233720);
-	printf("printf:    %#030llb\n", 9223372036854775807);
+	// ft_printf("ft_printf: %030llb\n", -92233720);
+	// printf("printf:    %#030llb\n", 9223372036854775807);
 
 	//printf("%c[1;33mHello, world!\n", 27);
 	// ft_printf("{%f}{%F}\n", -1444565444646.6465424242242454654, -1444565444646.6465424242242454654);
