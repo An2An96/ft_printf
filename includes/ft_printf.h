@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 16:48:45 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 18:00:20 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ enum			e_types
 {
 	TYPE_NONE,
 	TYPE_INT,
-	TYPE_CHAR,
 	TYPE_PTR,
 	TYPE_DOUBLE,
 	TYPE_UNSIGNED
@@ -88,5 +87,6 @@ int				print_float(void *value, t_spec *spec);
 int				print_char(void *value, t_spec *spec);
 int				print_string(void *value, t_spec *spec);
 int				print_pointer(void *value, t_spec *spec);
+int				print_binary(void *value, t_spec *spec);
 
 #endif

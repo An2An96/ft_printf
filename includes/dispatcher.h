@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 14:51:09 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 15:51:22 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 17:37:02 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ const t_formatter	g_dispatcher[] = {
 	{ 'c', &print_char, TYPE_INT },
 	{ 's', &print_string, TYPE_PTR },
 	{ 'p', &print_pointer, TYPE_PTR },
+	{ 'b', &print_binary, TYPE_INT },
 	{ '\0', NULL, 0 }
 };
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spec_o.c                                           :+:      :+:    :+:   */
+/*   spec_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/23 18:28:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 17:55:17 by rschuppe         ###   ########.fr       */
+/*   Created: 2018/12/27 17:32:20 by rschuppe          #+#    #+#             */
+/*   Updated: 2018/12/27 17:54:02 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static char	*get_value(void *value, t_spec *spec)
 	if (*((int*)value) != 0 || spec->accuracy != 0)
 	{
 		if (spec->size == SIZE_l)
-			res = ft_uitoa_base(*((unsigned long*)value), 8);
+			res = ft_uitoa_base(*((long*)value), 2);
 		else if (spec->size == SIZE_ll)
-			res = ft_uitoa_base(*((unsigned long long*)value), 8);
+			res = ft_uitoa_base(*((long long*)value), 2);
 		else if (spec->size == SIZE_z)
-			res = ft_uitoa_base(*((ssize_t*)value), 8);
+			res = ft_uitoa_base(*((ssize_t*)value), 2);
 		else
-			res = ft_uitoa_base(*((unsigned int*)value), 8);
+			res = ft_uitoa_base(*((int*)value), 2);
 		ft_str_fixlen(&res, '0', spec->accuracy, 0);
 	}
 	else
@@ -33,7 +33,7 @@ static char	*get_value(void *value, t_spec *spec)
 	return (res);
 }
 
-int			print_octal(void *value, t_spec *spec)
+int	print_binary(void *value, t_spec *spec)
 {
 	int		len;
 	char	*res;
