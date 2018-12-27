@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:55:39 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 12:25:28 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 12:30:32 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		print_unsigned(void *value, t_spec *spec)
 	len = ft_str_fixlen(&res,
 		CHECK_FLAG(FLAG_ZERO) ? '0' : ' ', spec->width, CHECK_FLAG(FLAG_MINUS));
 	ft_putstr(res);
+	free(res);
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:22:47 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 12:22:19 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 12:34:45 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ static char	*ft_extend_itoa(long long n, int discharges, int need_sign)
 		while (discharges)
 		{
 			n = unsig_n % 10;
-			res[--discharges] = ABS(n) + '0';		//	ПОФИКСИТЬ ЭТО ГОВНО
+			res[--discharges] = ABS(n) + '0';		/* ПОФИКСИТЬ ЭТО ГОВНО */
 			unsig_n /= 10;
 		}
-		if (sign)
-			res[0] = '-';
-		else if (need_sign)
-			res[0] = '+';
+		if (sign || need_sign)
+			res[0] = sign ? '-' : '+';
 	}
 	return (res);
 }
@@ -71,11 +69,13 @@ int			print_number(void *value, t_spec *spec)
 	char	*res;
 	int		len;
 
-	if (spec->accuracy == -1 && CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
+	if (spec->accuracy == -1
+		&& CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
 	{
 		if (*((long long*)value) < 0 || CHECK_FLAG(FLAG_PLUS))
 			spec->width--;
-		spec->accuracy = spec->accuracy > spec->width ? spec->accuracy : spec->width;
+		spec->accuracy = spec->accuracy > spec->width ?
+			spec->accuracy : spec->width;
 		spec->width = 0;
 	}
 	res = get_value(value, spec);
