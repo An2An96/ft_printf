@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 14:28:15 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 16:48:45 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct	s_formater {
 }				t_formatter;
 
 int				find_specifier(const char ch, const t_formatter *dispatcher);
-void			parse_spec_body(char *body, t_spec *spec);
+int				is_spec_body_char(char ch);
 char			get_flags(char **body);
 int				get_accuracy(char *body);
 char			get_size(char *body);

@@ -6,11 +6,19 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 15:12:52 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 16:50:11 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dispatcher.h"
+
+static void	parse_spec_body(char *body, t_spec *spec)
+{
+	spec->flags = get_flags(&body);
+	spec->width = ft_atoi(body);
+	spec->accuracy = get_accuracy(body);
+	spec->size = get_size(body);
+}
 
 /*
 **	spec_idx == 5 -- для обработки синонима %U = %lu
@@ -23,15 +31,6 @@ static int	specifier_handler(int spec_idx, char **body, va_list *ap, int *len)
 	int				res;
 	int				body_len;
 
-	body_len = ft_strlen(*body);
-	if (spec_idx == 255)
-	{
-		ft_putstr(*body + 1);
-		ft_strdel(body);
-		*len += body_len - 1;
-		return (1);
-	}
-	(*body)[body_len - 1] = '\0';
 	parse_spec_body(*body, &spec);
 	ft_strdel(body);
 	if (spec_idx == 5)
@@ -53,6 +52,25 @@ static int	specifier_handler(int spec_idx, char **body, va_list *ap, int *len)
 	return (1);
 }
 
+static int	spec_body_handler(
+	const char *format, char **start, va_list *ap, int *len)
+{
+	int spec_idx;
+
+	if ((spec_idx = find_specifier(*format, &g_dispatcher)) >= 0)
+	{
+		*start = ft_strsub(*start, 1, format - *start);
+		return (specifier_handler(spec_idx, start, ap, len));
+	}
+	else if (!is_spec_body_char(*format))
+	{
+		ft_putchar(*format);
+		(*len)++;
+		*start = NULL;
+	}
+	return (1);
+}
+
 static void	format_handler(const char *format, va_list *ap, int *len)
 {
 	char	*start;
@@ -64,12 +82,8 @@ static void	format_handler(const char *format, va_list *ap, int *len)
 	{
 		if (start)
 		{
-			if ((spec_idx = find_specifier(*format, &g_dispatcher)) >= 0)
-			{
-				start = ft_strsub(start, 1, format - start);
-				if ((res = specifier_handler(spec_idx, &start, ap, len)) == 0)
-					return ;
-			}
+			if (spec_body_handler(format, &start, ap, len) == 0)
+				return ;
 		}
 		else if (*format == '%')
 			start = (char*)format;
