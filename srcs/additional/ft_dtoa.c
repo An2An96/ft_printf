@@ -6,7 +6,7 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 13:19:27 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 15:39:35 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/27 16:50:58 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,12 @@ char		*ft_dtoa(long double num, int acc)
 	char		*buf;
 	char		*res;
 	size_t		eps;
+	long double	epp;
 
-	eps = (size_t)ft_pow(10, acc);
-	nbr = (ssize_t)((num + 0.5 / eps) * eps);
+	epp = ft_pow(10, acc);
+	//eps = (size_t)ft_pow(10, acc);
+	eps = (size_t)epp;
+	nbr = (ssize_t)((num + 0.5 / epp) * epp);
 	if (acc == 0)
 		return (ft_stoa(nbr / eps));
 	fraction = ft_stoa(ABS(nbr % eps));

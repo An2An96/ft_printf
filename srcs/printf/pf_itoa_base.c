@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
+/*   pf_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/20 17:52:43 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 18:08:31 by anorjen          ###   ########.fr       */
+/*   Created: 2018/12/27 18:03:21 by anorjen           #+#    #+#             */
+/*   Updated: 2018/12/27 18:08:25 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ static long long	ft_digits(long long num, int base)
 	return (i);
 }
 
-char				*ft_uitoa_base(long long num, int base)
+char				*pf_uitoa_base(long long num, int base, int len)
 {
 	char		*res;
 	long long	digs;
 	int			i;
 
 	digs = ft_digits(num, base);
+	digs = (digs > len ? digs : len);
 	if ((res = (char *)malloc(sizeof(char) * (digs + 1))) == NULL)
 		return (NULL);
 	i = digs;

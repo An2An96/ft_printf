@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 18:00:20 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 18:18:41 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ int				print_char(void *value, t_spec *spec);
 int				print_string(void *value, t_spec *spec);
 int				print_pointer(void *value, t_spec *spec);
 int				print_binary(void *value, t_spec *spec);
+
+char			*pf_uitoa_base(long long num, int base, int len);
 
 #endif
