@@ -6,11 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 18:43:22 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 22:19:19 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:54:10 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inside.h"
+#include "libft.h"
 
 static ssize_t	ft_countnums(ssize_t nbr)
 {
