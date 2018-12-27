@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 14:24:26 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 18:23:29 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static char	*ft_strcut(char const *s, size_t len)
 	return (res);
 }
 
-int			print_string(void *value, t_spec *spec)
+int			print_string(void *value, t_spec *spec, int *len)
 {
-	int		len;
+	int		tmp;
 	char	*res;
 
 	if (!value)
@@ -51,9 +51,10 @@ int			print_string(void *value, t_spec *spec)
 	else
 		res = value;
 	if (!res)
-		return (-1);
-	len = ft_str_fixlen(&res, ' ', spec->width, spec->flags & FLAG_MINUS);
+		return (0);
+	tmp = ft_str_fixlen(&res, ' ', spec->width, spec->flags & FLAG_MINUS);
 	ft_putstr(res);
 	free(res);
-	return (len);
+	*len += tmp;
+	return (1);
 }

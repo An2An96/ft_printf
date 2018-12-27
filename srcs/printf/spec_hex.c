@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spec_hex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 19:38:19 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/27 19:44:26 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,29 +75,31 @@ static void	ft_getstr(char **res, void *value, t_spec *spec)
 	}
 }
 
-int			print_hex(void *value, t_spec *spec)
+int			print_hex(void *value, t_spec *spec, int *len)
 {
 	char	*res;
 
 	res = ft_strdup("");
 	ft_getstr(&res, value, spec);
 	if (res == NULL)
-		return (-1);
+		return (0);
 	ft_putstr(res);
 	free(res);
-	return (ft_strlen(res));
+	*len += ft_strlen(res);
+	return (1);
 }
 
-int			print_hex_upper(void *value, t_spec *spec)
+int			print_hex_upper(void *value, t_spec *spec, int *len)
 {
 	char	*res;
 
 	res = ft_strdup("");
 	ft_getstr(&res, value, spec);
 	if (res == NULL)
-		return (-1);
+		return (0);
 	ft_strupper(res);
 	ft_putstr(res);
 	free(res);
-	return (ft_strlen(res));
+	*len += ft_strlen(res);
+	return (1);
 }

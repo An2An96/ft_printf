@@ -21,10 +21,9 @@ SRC =	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_strnew.c ft_printchr.c ft_str_fixlen.c \
 		ft_pow.c ft_stoa.c ft_str_fixlen.c ft_uitoa_base.c \
-		ft_printf.c additional.c type_handlers.c \
+		ft_printf.c additional.c type_handlers.c pf_itoa_base.c \
 		spec_percent.c spec_di.c spec_o.c spec_u.c spec_hex.c \
-		spec_f.c spec_s.c spec_c.c spec_p.c spec_b.c type_handlers.c pf_itoa_base.c
-		
+		spec_f.c spec_s.c spec_c.c spec_p.c spec_b.c spec_n.c 
 		
 		#ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c
 		#ft_lstmap.c ft_lstpush.c ft_lstremove.c

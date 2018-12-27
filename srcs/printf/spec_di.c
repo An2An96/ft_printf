@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:22:47 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 14:30:18 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 18:32:50 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ static char	*get_value(void *value, t_spec *spec)
 	return (ft_strnew(0));
 }
 
-int			print_number(void *value, t_spec *spec)
+int			print_number(void *value, t_spec *spec, int *len)
 {
 	char	*res;
-	int		len;
+	int		tmp;
 
 	if (spec->accuracy == -1
 		&& CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
@@ -83,14 +83,15 @@ int			print_number(void *value, t_spec *spec)
 	}
 	res = get_value(value, spec);
 	if (!res)
-		return (-1);
-	len = ft_str_fixlen(&res, ' ', spec->width, CHECK_FLAG(FLAG_MINUS));
+		return (0);
+	tmp = ft_str_fixlen(&res, ' ', spec->width, CHECK_FLAG(FLAG_MINUS));
 	if (!spec->width && spec->flags == FLAG_SPACE && *((long long*)value) > 0)
 	{
 		ft_putchar(' ');
-		len++;
+		tmp++;
 	}
 	ft_putstr(res);
 	free(res);
-	return (len);
+	*len += tmp;
+	return (1);
 }

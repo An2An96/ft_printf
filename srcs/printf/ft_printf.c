@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 17:40:48 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 18:30:04 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int	specifier_handler(int spec_idx, char **body, va_list *ap, int *len)
 {
 	t_value_types	value;
 	t_spec			spec;
-	int				res;
 	int				body_len;
 
 	parse_spec_body(*body, &spec);
@@ -43,13 +42,13 @@ static int	specifier_handler(int spec_idx, char **body, va_list *ap, int *len)
 		double_handler(&spec, &value, ap);
 	else if (g_dispatcher[spec_idx].arg_type == TYPE_UNSIGNED)
 		unsigned_handler(&spec, &value, ap);
-	if ((res = g_dispatcher[spec_idx].func(value.p_value, &spec)) == -1)
+	if (g_dispatcher[spec_idx].func(value.p_value, &spec, len))
+		return (1);
+	else
 	{
 		*len = -1;
 		return (0);
 	}
-	*len += res;
-	return (1);
 }
 
 static int	spec_body_handler(

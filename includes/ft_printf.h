@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 18:18:41 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/27 19:44:42 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct	s_spec {
 
 typedef struct	s_formater {
 	char		type_specifier;
-	int			(*func)(void*, t_spec*);
+	int			(*func)(void*, t_spec*, int*);
 	char		arg_type;
 }				t_formatter;
 
@@ -77,17 +77,18 @@ void			int_handler(t_spec *spec, t_value_types *value, va_list *ap);
 void			unsigned_handler(
 	t_spec *spec, t_value_types *value, va_list *ap);
 
-int				print_percent(void *value, t_spec *spec);
-int				print_number(void *value, t_spec *spec);
-int				print_octal(void *value, t_spec *spec);
-int				print_unsigned(void *value, t_spec *spec);
-int				print_hex(void *value, t_spec *spec);
-int				print_hex_upper(void *value, t_spec *spec);
-int				print_float(void *value, t_spec *spec);
-int				print_char(void *value, t_spec *spec);
-int				print_string(void *value, t_spec *spec);
-int				print_pointer(void *value, t_spec *spec);
-int				print_binary(void *value, t_spec *spec);
+int				write_len(void *value, t_spec *spec, int *len);
+int				print_percent(void *value, t_spec *spec, int *len);
+int				print_number(void *value, t_spec *spec, int *len);
+int				print_octal(void *value, t_spec *spec, int *len);
+int				print_unsigned(void *value, t_spec *spec, int *len);
+int				print_hex(void *value, t_spec *spec, int *len);
+int				print_hex_upper(void *value, t_spec *spec, int *len);
+int				print_float(void *value, t_spec *spec, int *len);
+int				print_char(void *value, t_spec *spec, int *len);
+int				print_string(void *value, t_spec *spec, int *len);
+int				print_pointer(void *value, t_spec *spec, int *len);
+int				print_binary(void *value, t_spec *spec, int *len);
 
 char			*pf_uitoa_base(long long num, int base, int len);
 

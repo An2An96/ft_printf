@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   spec_f.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:37:13 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 15:39:28 by anorjen          ###   ########.fr       */
+/*   Updated: 2018/12/27 18:31:45 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_float(void *value, t_spec *spec)
+int	print_float(void *value, t_spec *spec, int *len)
 {
 	char	*res;
 	int		i;
@@ -27,7 +27,7 @@ int	print_float(void *value, t_spec *spec)
 	else
 		res = ft_dtoa(*((double*)value), spec->accuracy);
 	if (!res)
-		return (-1);
+		return (0);
 	i = spec->width - ft_strlen(res);
 	if (i > 0 && !CHECK_FLAG(FLAG_MINUS))
 		ft_printchr(i, c);
@@ -37,5 +37,6 @@ int	print_float(void *value, t_spec *spec)
 	if (i > 0 && CHECK_FLAG(FLAG_MINUS))
 		ft_printchr(i, c);
 	free(res);
-	return (i > 0 ? spec->width : spec->width - i);
+	*len += (i > 0 ? spec->width : spec->width - i);
+	return (1);
 }

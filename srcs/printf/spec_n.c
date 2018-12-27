@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spec_c.c                                           :+:      :+:    :+:   */
+/*   spec_n.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/23 17:09:14 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 18:28:06 by rschuppe         ###   ########.fr       */
+/*   Created: 2018/12/27 18:15:44 by rschuppe          #+#    #+#             */
+/*   Updated: 2018/12/27 18:19:59 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_char(void *value, t_spec *spec, int *len)
+int	write_len(void *value, t_spec *spec, int *len)
 {
-	size_t	i;
+	size_t *ptr;
 
-	i = 0;
-	if (CHECK_FLAG(FLAG_MINUS))
-	{
-		ft_putchar(*((char*)value));
-		while (++i < spec->width)
-			ft_putchar(' ');
-	}
-	else
-	{
-		while (++i < spec->width)
-			ft_putchar(' ');
-		ft_putchar(*((char*)value));
-	}
-	*len += spec->width > 1 ? spec->width : 1;
+	ptr = (size_t*)value;
+	*ptr = *len;
 	return (1);
 }
