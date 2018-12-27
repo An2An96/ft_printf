@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dtoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 13:19:27 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 21:46:28 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:17:01 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_str_bigger(char **str, char c, int acc)
-{
-	int		i;
-	int		len;
-	char	*new;
-	char	ch;
+// static void	ft_str_bigger(char **str, char c, int acc)
+// {
+// 	int		i;
+// 	int		len;
+// 	char	*new;
+// 	char	ch;
 
-	(void)c;
-	ch = 0;
-	len = ft_strlen(*str);
-	new = (char *)malloc(sizeof(char) * (acc + 1));
-	new[acc] = '\0';
-	i = -1;
-	while (++i < acc)
-	{
-		if ((*str)[i] == '\0')
-			ch = 1;
-		if (ch == 0)
-			new[i] = (*str)[i];
-		else
-			new[i] = '0';
-	}
-	*str = new;
-}
+// 	(void)c;
+// 	ch = 0;
+// 	len = ft_strlen(*str);
+// 	new = (char *)malloc(sizeof(char) * (acc + 1));
+// 	new[acc] = '\0';
+// 	i = -1;
+// 	while (++i < acc)
+// 	{
+// 		if ((*str)[i] == '\0')
+// 			ch = 1;
+// 		if (ch == 0)
+// 			new[i] = (*str)[i];
+// 		else
+// 			new[i] = '0';
+// 	}
+// 	*str = new;
+// }
 
 char		*ft_dtoa(long double num, int acc)
 {
@@ -52,9 +52,10 @@ char		*ft_dtoa(long double num, int acc)
 	fraction = ft_stoa(ABS(nbr % eps));
 	if (ft_strlen(fraction) < (size_t)acc)
 	{
-		buf = fraction;
-		ft_str_bigger(&fraction, '0', acc);
-		free(buf);
+		// buf = fraction;
+		ft_str_fixlen(&fraction, '0', acc, 1);
+		// ft_str_bigger(&fraction, '0', acc);
+		// free(buf);
 	}
 	buf = ft_strjoin(ft_stoa(nbr / eps), ".");
 	res = ft_strjoin(buf, fraction);
