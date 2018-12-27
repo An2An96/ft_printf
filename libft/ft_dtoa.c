@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 13:19:27 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 19:54:46 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 21:46:28 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	ft_str_bigger(char **str, char c, int acc)
 	char	*new;
 	char	ch;
 
+	(void)c;
 	ch = 0;
 	len = ft_strlen(*str);
 	new = (char *)malloc(sizeof(char) * (acc + 1));
@@ -49,7 +50,7 @@ char		*ft_dtoa(long double num, int acc)
 	if (acc == 0)
 		return (ft_stoa(nbr / eps));
 	fraction = ft_stoa(ABS(nbr % eps));
-	if (ft_strlen(fraction) < acc)
+	if (ft_strlen(fraction) < (size_t)acc)
 	{
 		buf = fraction;
 		ft_str_bigger(&fraction, '0', acc);

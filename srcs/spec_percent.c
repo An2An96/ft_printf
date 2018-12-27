@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spec_n.c                                           :+:      :+:    :+:   */
+/*   spec_percent.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/27 18:15:44 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 18:19:59 by rschuppe         ###   ########.fr       */
+/*   Created: 2018/12/25 15:06:30 by rschuppe          #+#    #+#             */
+/*   Updated: 2018/12/27 21:42:10 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	write_len(void *value, t_spec *spec, int *len)
+int	print_percent(void *value, t_spec *spec, int *len)
 {
-	size_t *ptr;
+	char ch;
 
-	ptr = (size_t*)value;
-	*ptr = *len;
-	return (1);
+	(void)value;
+	ch = '%';
+	return (print_char(&ch, spec, len));
 }

@@ -6,30 +6,24 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 15:09:37 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 17:40:42 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 21:48:48 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+void	parse_spec_body(char *body, t_spec *spec)
+{
+	spec->flags = get_flags(&body);
+	spec->width = ft_atoi(body);
+	spec->accuracy = get_accuracy(body);
+	spec->size = get_size(body);
+}
+
 int		is_spec_body_char(char ch)
 {
 	return (ft_isdigit(ch) || ch == ' ' || ch == '-' || ch == '+' || ch == '#'
 		|| ch == '.' || ch == 'l' || ch == 'h' || ch == 'L' || ch == 'z');
-}
-
-int		find_specifier(const char ch, const t_formatter *dispatcher)
-{
-	int i;
-
-	i = 0;
-	while (dispatcher[i].type_specifier)
-	{
-		if (ch == dispatcher[i].type_specifier)
-			return (i);
-		i++;
-	}
-	return (-1);
 }
 
 char	get_flags(char **body)

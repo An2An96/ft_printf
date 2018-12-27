@@ -6,18 +6,24 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 20:03:58 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 21:48:33 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dispatcher.h"
 
-static void	parse_spec_body(char *body, t_spec *spec)
+int		find_specifier(const char ch)
 {
-	spec->flags = get_flags(&body);
-	spec->width = ft_atoi(body);
-	spec->accuracy = get_accuracy(body);
-	spec->size = get_size(body);
+	int i;
+
+	i = 0;
+	while (g_dispatcher[i].type_specifier)
+	{
+		if (ch == g_dispatcher[i].type_specifier)
+			return (i);
+		i++;
+	}
+	return (-1);
 }
 
 /*
@@ -29,7 +35,6 @@ static int	specifier_handler(int spec_idx, char **body, va_list *ap, int *len)
 {
 	t_value_types	value;
 	t_spec			spec;
-	int				body_len;
 
 	parse_spec_body(*body, &spec);
 	ft_strdel(body);
@@ -57,7 +62,7 @@ static int	spec_body_handler(
 {
 	int spec_idx;
 
-	if ((spec_idx = find_specifier(*format, &g_dispatcher)) >= 0)
+	if ((spec_idx = find_specifier(*format)) >= 0)
 	{
 		*start = ft_strsub(*start, 1, format - *start);
 		return (specifier_handler(spec_idx, start, ap, len));
@@ -74,8 +79,6 @@ static int	spec_body_handler(
 static void	format_handler(const char *format, va_list *ap, int *len)
 {
 	char	*start;
-	int		spec_idx;
-	int		res;
 
 	start = NULL;
 	while (*format)

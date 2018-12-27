@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 20:21:50 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 21:42:39 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*ft_strcut(char const *s, size_t len)
 {
 	unsigned int	i;
 	char			*res;
-	int				src_len;
+	size_t			src_len;
 
 	res = NULL;
 	if (s)

@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:45:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 20:07:29 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 21:26:50 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,5 @@ char				*ft_stoa(ssize_t nbr);
 void				ft_printchr(int counts, char c);
 int					ft_str_fixlen(char **str, char ch, int width, int side);
 void				ft_strupper(char *str);
-
-int					ft_printf(const char *format, ...);
 
 #endif

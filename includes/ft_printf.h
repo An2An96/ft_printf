@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 19:44:42 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 21:52:54 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ typedef struct	s_formater {
 	char		arg_type;
 }				t_formatter;
 
-int				find_specifier(const char ch, const t_formatter *dispatcher);
+int				ft_printf(const char *format, ...);
+
+int				find_specifier(const char ch);
+void			parse_spec_body(char *body, t_spec *spec);
 int				is_spec_body_char(char ch);
 char			get_flags(char **body);
 int				get_accuracy(char *body);
@@ -90,6 +93,7 @@ int				print_string(void *value, t_spec *spec, int *len);
 int				print_pointer(void *value, t_spec *spec, int *len);
 int				print_binary(void *value, t_spec *spec, int *len);
 
-char			*pf_uitoa_base(long long num, int base, int len);
+char			*pf_uitoa_base(unsigned long long num, int base, int len);
+
 
 #endif
