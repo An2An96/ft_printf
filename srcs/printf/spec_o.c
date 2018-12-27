@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:28:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 12:29:48 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 14:36:08 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static char	*get_value(void *value, t_spec *spec)
 			res = ft_uitoa_base(*((unsigned long*)value), 8);
 		else if (spec->size == SIZE_ll)
 			res = ft_uitoa_base(*((unsigned long long*)value), 8);
+		else if (spec->size == SIZE_z)
+			res = ft_uitoa_base(*((ssize_t*)value), 8);
 		else
 			res = ft_uitoa_base(*((unsigned int*)value), 8);
 		ft_str_fixlen(&res, '0', spec->accuracy, 0);
@@ -37,6 +39,8 @@ int			print_octal(void *value, t_spec *spec)
 	char	*res;
 
 	res = get_value(value, spec);
+	if (!res)
+		return (-1);
 	len = ft_strlen(res);
 	if (res[0] != '0' && spec->flags & FLAG_OCTOP)
 	{

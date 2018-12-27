@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:55:39 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 12:30:32 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 14:34:26 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ int		print_unsigned(void *value, t_spec *spec)
 		res = ft_uitoa_base(*((unsigned long*)value), 10);
 	else if (spec->size == SIZE_ll)
 		res = ft_uitoa_base(*((unsigned long long*)value), 10);
+	else if (spec->size == SIZE_z)
+		res = ft_uitoa_base(*((size_t*)value), 10);
 	else
 		res = ft_uitoa_base(*((unsigned int*)value), 10);
+	if (!res)
+		return (-1);
 	len = ft_str_fixlen(&res, '0', spec->accuracy, 0);
 	len = ft_str_fixlen(&res,
 		CHECK_FLAG(FLAG_ZERO) ? '0' : ' ', spec->width, CHECK_FLAG(FLAG_MINUS));

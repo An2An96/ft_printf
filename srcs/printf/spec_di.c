@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:22:47 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 12:34:45 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 14:30:18 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	*ft_extend_itoa(long long n, int discharges, int need_sign)
 		while (discharges)
 		{
 			n = unsig_n % 10;
-			res[--discharges] = ABS(n) + '0';		/* ПОФИКСИТЬ ЭТО ГОВНО */
+			res[--discharges] = ABS(n) + '0';
 			unsig_n /= 10;
 		}
 		if (sign || need_sign)
@@ -57,6 +57,9 @@ static char	*get_value(void *value, t_spec *spec)
 		else if (spec->size == SIZE_hh)
 			return (ft_extend_itoa(
 				*((signed char*)value), spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
+		else if (spec->size == SIZE_z)
+			return (ft_extend_itoa(
+				*((ssize_t*)value), spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 		else
 			return (ft_extend_itoa(
 				*((int*)value), spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
@@ -79,6 +82,8 @@ int			print_number(void *value, t_spec *spec)
 		spec->width = 0;
 	}
 	res = get_value(value, spec);
+	if (!res)
+		return (-1);
 	len = ft_str_fixlen(&res, ' ', spec->width, CHECK_FLAG(FLAG_MINUS));
 	if (!spec->width && spec->flags == FLAG_SPACE && *((long long*)value) > 0)
 	{

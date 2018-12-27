@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 15:09:37 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/26 17:09:05 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 15:18:25 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int		find_specifier(const char ch, const t_formatter *dispatcher)
 			return (i);
 		i++;
 	}
+	if (!ft_isdigit(ch) && ch != ' ' && ch != '-' && ch != '+' && ch != '#'
+		&& ch != '.' && ch != 'l' && ch != 'h' && ch != 'L' && ch != 'z')
+		return (255);
 	return (-1);
 }
 
@@ -79,12 +82,14 @@ char	get_size(char *body)
 	{
 		while (*body && size == SIZE_NONE)
 		{
-			if (body[0] == 'L')
+			if (body[0] == 'L' && body[1] == '\0')
 				size = SIZE_L;
 			else if (body[0] == 'l')
 				size = body[1] == 'l' ? SIZE_ll : SIZE_l;
 			else if (body[0] == 'h')
 				size = body[1] == 'h' ? SIZE_hh : SIZE_h;
+			else if (body[0] == 'z')
+				size = SIZE_z;
 			body++;
 		}
 	}

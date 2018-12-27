@@ -6,13 +6,38 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 12:30:27 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 14:24:26 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_string(void *value, t_spec *spec)
+static char	*ft_strcut(char const *s, size_t len)
+{
+	unsigned int	i;
+	char			*res;
+	int				src_len;
+
+	res = NULL;
+	if (s)
+	{
+		src_len = ft_strlen(s);
+		len = len > src_len ? src_len : len;
+		res = ft_strnew(len);
+		if (res)
+		{
+			i = 0;
+			while (i < len)
+			{
+				res[i] = s[i];
+				i++;
+			}
+		}
+	}
+	return (res);
+}
+
+int			print_string(void *value, t_spec *spec)
 {
 	int		len;
 	char	*res;
@@ -22,9 +47,11 @@ int	print_string(void *value, t_spec *spec)
 	else
 		value = ft_strdup(value);
 	if (spec->accuracy > 0)
-		res = ft_strsub(value, 0, spec->accuracy);
+		res = ft_strcut(value, spec->accuracy);
 	else
 		res = value;
+	if (!res)
+		return (-1);
 	len = ft_str_fixlen(&res, ' ', spec->width, spec->flags & FLAG_MINUS);
 	ft_putstr(res);
 	free(res);
