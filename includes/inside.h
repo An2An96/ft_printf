@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 22:06:47 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:46:55 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,5 @@ int				print_pointer(void *value, t_spec *spec, int *len);
 int				print_binary(void *value, t_spec *spec, int *len);
 
 char			*pf_uitoa_base(unsigned long long num, int base, int len);
-
 
 #endif

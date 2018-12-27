@@ -6,36 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 13:19:27 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 22:18:46 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:47:28 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inside.h"
-
-static void	ft_str_bigger(char **str, char c, int acc)
-{
-	int		i;
-	int		len;
-	char	*new;
-	char	ch;
-
-	(void)c;
-	ch = 0;
-	len = ft_strlen(*str);
-	new = (char *)malloc(sizeof(char) * (acc + 1));
-	new[acc] = '\0';
-	i = -1;
-	while (++i < acc)
-	{
-		if ((*str)[i] == '\0')
-			ch = 1;
-		if (ch == 0)
-			new[i] = (*str)[i];
-		else
-			new[i] = '0';
-	}
-	*str = new;
-}
 
 char		*ft_dtoa(long double num, int acc)
 {
@@ -43,7 +18,7 @@ char		*ft_dtoa(long double num, int acc)
 	char		*fraction;
 	char		*buf;
 	char		*res;
-	size_t		eps;
+	ssize_t		eps;
 
 	eps = (size_t)ft_pow(10, acc);
 	nbr = (ssize_t)((num + 0.5 / eps) * eps);
@@ -51,11 +26,7 @@ char		*ft_dtoa(long double num, int acc)
 		return (ft_stoa(nbr / eps));
 	fraction = ft_stoa(ABS(nbr % eps));
 	if (ft_strlen(fraction) < (size_t)acc)
-	{
-		buf = fraction;
-		ft_str_bigger(&fraction, '0', acc);
-		free(buf);
-	}
+		ft_str_fixlen(&fraction, '0', acc, 1);
 	buf = ft_strjoin(ft_stoa(nbr / eps), ".");
 	res = ft_strjoin(buf, fraction);
 	free(buf);

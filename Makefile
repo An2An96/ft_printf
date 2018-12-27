@@ -6,7 +6,7 @@ OBJS_DIR = ./obj
 
 C_INCLUDE_PATH += includes/ libft/includes
 
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -g #-Wall -Werror -Wextra
 FLAGS += $(foreach path,$(C_INCLUDE_PATH),-I$(path))
 
 
@@ -32,14 +32,14 @@ all: $(NAME)
 $(OBJS): | $(OBJS_DIR)
 
 $(OBJS_DIR):
-	@mkdir -p $@
-	@mkdir -p $@/libft
+	mkdir -p $@
+	mkdir -p $@/libft
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	gcc $(FLAGS) -c $< -o $@ 
 
 $(OBJS_DIR)/libft/%.o: libft/%.c
-	@gcc $(FLAGS) -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	@echo "Building...\n"
