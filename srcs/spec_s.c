@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 21:42:39 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:03:40 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int			print_string(void *value, t_spec *spec, int *len)
 	if (CHECK_FLAG(FLAG_MINUS))
 		tmp = ft_str_fixlen(&res, ' ', spec->width, 1);
 	else
-		tmp = ft_str_fixlen(&res, CHECK_FLAG(FLAG_ZERO) ? '0' : ' ', spec->width, 0);
+		tmp = ft_str_fixlen(&res,
+			CHECK_FLAG(FLAG_ZERO) ? '0' : ' ', spec->width, 0);
 	ft_putstr(res);
 	free(res);
 	*len += tmp;

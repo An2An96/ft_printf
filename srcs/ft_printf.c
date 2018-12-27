@@ -6,13 +6,13 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 21:48:33 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:04:17 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dispatcher.h"
 
-int		find_specifier(const char ch)
+int			find_specifier(const char ch)
 {
 	int i;
 

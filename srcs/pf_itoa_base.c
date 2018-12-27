@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 18:03:21 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 21:50:50 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:04:32 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ char		*pf_uitoa_base(unsigned long long num, int base, int len)
 	res[digs] = '\0';
 	return (res);
 }
-
