@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spec_f.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:37:13 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 12:24:09 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 13:09:01 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	print_float(void *value, t_spec *spec)
 	c = ' ';
 	if (!CHECK_FLAG(FLAG_MINUS) && CHECK_FLAG(FLAG_ZERO))
 		c = '0';
-	spec->accuracy = spec->accuracy > 0 ? spec->accuracy : 6;
+	spec->accuracy = spec->accuracy == -1 ? 6 : spec->accuracy;
 	if (spec->size == SIZE_L)
 		str = ft_dtoa(*((long double*)value), spec->accuracy);
 	else
