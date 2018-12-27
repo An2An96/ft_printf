@@ -6,14 +6,14 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 14:51:09 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 20:02:15 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:07:15 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DISPATCHER_H
 # define DISPATCHER_H
 
-# include "ft_printf.h"
+# include "inside.h"
 
 const t_formatter	g_dispatcher[] = {
 	{ '%', &print_percent, TYPE_NONE },

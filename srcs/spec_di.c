@@ -6,11 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:22:47 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 21:51:33 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:26:09 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "inside.h"
 
 static char	*ft_extend_itoa(long long n, int discharges, int need_sign)
 {
@@ -71,20 +71,17 @@ int			print_number(void *value, t_spec *spec, int *len)
 {
 	char	*res;
 	int		tmp;
-	int	s;
 
-	s = ((CHECK_FLAG(FLAG_SPACE) && !CHECK_FLAG(FLAG_PLUS)) ? 1 : 0);
 	if (spec->accuracy == -1
 		&& CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
 	{
 		if (*((long long*)value) < 0 || CHECK_FLAG(FLAG_PLUS))
 			spec->width--;
-		spec->accuracy = spec->accuracy > spec->width ?
-			spec->accuracy : spec->width - s;
+		spec->accuracy = spec->accuracy > spec->width ? spec->accuracy
+			: spec->width - (CHECK_FLAG(FLAG_SPACE) && !CHECK_FLAG(FLAG_PLUS));
 		spec->width = 0;
 	}
-	res = get_value(value, spec);
-	if (!res)
+	if ((res = get_value(value, spec)) == 0)
 		return (0);
 	tmp = ft_str_fixlen(&res, ' ', spec->width, CHECK_FLAG(FLAG_MINUS));
 	if (!spec->width && CHECK_FLAG(FLAG_SPACE)

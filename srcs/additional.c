@@ -6,11 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 15:09:37 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 21:48:48 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:07:24 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "inside.h"
 
 void	parse_spec_body(char *body, t_spec *spec)
 {

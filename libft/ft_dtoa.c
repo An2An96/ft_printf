@@ -6,11 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 13:19:27 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 21:46:28 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:18:46 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "inside.h"
 
 static void	ft_str_bigger(char **str, char c, int acc)
 {

@@ -6,11 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:09:14 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 21:42:58 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:07:22 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "inside.h"
 
 int	print_char(void *value, t_spec *spec, int *len)
 {

@@ -6,11 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:23:45 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 21:58:52 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:07:42 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "inside.h"
 
 int	print_pointer(void *value, t_spec *spec, int *len)
 {

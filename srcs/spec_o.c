@@ -6,11 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:28:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 20:06:28 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:07:40 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "inside.h"
 
 static char	*get_value(void *value, t_spec *spec)
 {

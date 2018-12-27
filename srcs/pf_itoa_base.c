@@ -6,11 +6,11 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 18:03:21 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 22:04:32 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 22:07:09 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "inside.h"
 
 static int	ft_digits(unsigned long long num, int base)
 {
