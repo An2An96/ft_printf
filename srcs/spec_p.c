@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:23:45 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 22:07:42 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 23:30:51 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,17 @@ int	print_pointer(void *value, t_spec *spec, int *len)
 
 	(void)spec;
 	if ((size_t)value)
-	{
 		res = ft_itoa_base((size_t)value, 16);
-		if (!res)
-			return (0);
-		ft_putstr("0x");
-		ft_putstr(ft_strlower(res));
-		free(res);
-		*len += ft_strlen(res);
-	}
 	else
-	{
-		res = ft_strdup("");
-		ft_str_fixlen(&res, ' ', spec->width - 3, 1);
-		ft_putstr(res);
-		ft_putstr("0x0");
-	}
-	*len += 2;
+		res = ft_strdup(spec->accuracy ? "0" : "");
+	if (!res)
+		return (0);
+	value = ft_strjoin("0x", ft_strlower(res));
+	free(res);
+	res = value;
+	ft_str_fixlen(&res, ' ', spec->width, 0);
+	ft_putstr(res);
+	*len += ft_strlen(res);
+	free(res);
 	return (1);
 }

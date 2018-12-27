@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 22:07:51 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/27 23:12:10 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			print_string(void *value, t_spec *spec, int *len)
 		value = ft_strjoin(value, "(null)");
 	else
 		value = ft_strdup(value);
-	if (spec->accuracy > 0)
+	if (spec->accuracy >= 0)
 		res = ft_strcut(value, spec->accuracy);
 	else
 		res = value;
