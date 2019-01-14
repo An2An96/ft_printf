@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 23:52:12 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/28 13:20:30 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,13 @@ int			print_string(void *value, t_spec *spec, int *len)
 	int		tmp;
 	char	*res;
 
-	if (!value && !spec->width)
-		value = ft_strjoin(value, "(null)");
+	if (!value)
+	{
+		if (!spec->width)
+			value = ft_strjoin(value, "(null)");
+		else
+			value = ft_strnew(0);
+	}
 	else
 		value = ft_strdup(value);
 	if (spec->accuracy >= 0)

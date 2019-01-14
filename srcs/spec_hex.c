@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 22:07:36 by rschuppe         ###   ########.fr       */
+/*   Updated: 2018/12/28 13:06:02 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 
 static char	*ft_iina(void *value, char size, int len)
 {
-	char	*res;
-
 	if (size == SIZE_l)
-		res = pf_uitoa_base(*((unsigned long*)value), 16, len);
-	else if (size == SIZE_ll || size == SIZE_z)
-		res = pf_uitoa_base(*((unsigned long long*)value), 16, len);
+		return (pf_uitoa_base(*((unsigned long*)value), 16, len));
+	else if (size == SIZE_ll)
+		return (pf_uitoa_base(*((unsigned long long*)value), 16, len));
 	else if (size == SIZE_hh)
-		res = pf_uitoa_base(*((unsigned char*)value), 16, len);
+		return (pf_uitoa_base(*((unsigned char*)value), 16, len));
 	else if (size == SIZE_h)
-		res = pf_uitoa_base(*((unsigned short int*)value), 16, len);
-	else
-		res = pf_uitoa_base(*((unsigned int*)value), 16, len);
-	return (res);
+		return (pf_uitoa_base(*((unsigned short int*)value), 16, len));
+	else if (size == SIZE_z)
+		return (pf_uitoa_base(*((size_t*)value), 16, len));
+	return (pf_uitoa_base(*((unsigned int*)value), 16, len));
 }
 
 static int	checkacc(void *value, t_spec *spec, char **res, int *ox)
