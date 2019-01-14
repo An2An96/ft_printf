@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dtoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 13:19:27 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 22:53:43 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:35:03 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char		*ft_dtoa(long double num, int acc)
 		return (ft_stoa(nbr / eps));
 	fraction = ft_stoa(ABS(nbr) % eps);
 	if (ft_strlen(fraction) < (size_t)acc)
-		ft_str_fixlen(&fraction, '0', acc, 1);
+		ft_str_fixlen(&fraction, '0', acc, 0);
 	buf = ft_strjoin(ft_stoa(nbr / eps), ".");
 	res = ft_strjoin(buf, fraction);
 	free(buf);

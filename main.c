@@ -7,8 +7,11 @@
 int main()
 {
 	// printf("test1 %lu %lu", sizeof(unsigned long), sizeof(size_t));
-	int a = 5;
-	int *b = &a;
+	int a , c;
+	int b[] = {945, 946, 947, 0};
+	int *p;
+
+	p = &b[0];
 	// ft_printf("%+#10.5hhd %c %s %p", 123, 'A', "Hello World", b);
 	ft_printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
 	printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
@@ -17,8 +20,25 @@ int main()
 	// ft_printf("%ld\n", LLONG_MAX);
 	// printf("%ld\n", LLONG_MAX);
 
-	// ft_printf("%u\n", -9223372036854775808);
-	// printf("%u\n", -9223372036854775808);
+
+	// a = ft_printf("1: %s\n", "ααα");
+	// c = printf("%ls", L"\u2620");  //printf("2: %ls\n", L"ααα");
+	// printf("%d %d\n", a, c);
+
+	ft_printf("1: %e\n", -2.0);
+	printf("2: %e\n", -2.0);
+
+	ft_printf("1: %e\n", 0.013);
+	printf("2: %e\n", 0.013);
+
+	ft_printf("1: %e\n", 123.786);
+	printf("2: %e\n", 123.786);
+
+	ft_printf("1: %e\n", 8.0003432121213);
+	printf("2: %e\n", 8.0003432121213);
+
+	// printf("%e\n", 8.76);
+	// printf("%a\n", 8.76);
 
 	// if (ft_printf("%#x %#llX\n", 42, 9223372036854775807) == printf("%#x %#llX\n", 42, 9223372036854775807))
 	// {
@@ -34,13 +54,40 @@ int main()
 
 	// ft_printf("%030.20lld\n", 9223372036854775807);
 
-	// for(int i = 0; i < 1000000; i++)
-	// {
-	// 	ft_printf("{%05.s}", 0);
-	// }
-	
+	// ft_printf("{%05.s}", 0);
 	// printf("{%05.s}", 0);
 
+	// ft_printf("1: %p\n", 0);
+	// printf("2: %p\n\n", 0);  Ǳ
+
+	// ft_printf("1: {%f}{%F}\n", -1.42, -1.42);
+	// printf("2: {%f}{%F}\n\n", -1.42, -1.42);
+
+	// ft_printf("1: %llx, %llx\n", 0, ULONG_MAX);
+	// printf("2: %llx, %llx\n", 0, ULONG_MAX);
+
+	// ft_printf("1: %hhx, %hhx\n", 0, UCHAR_MAX + 42);
+	// printf("2: %hhx, %hhx\n", 0, UCHAR_MAX + 42);
+
+	// ft_printf("1: %zx, %zx\n", 0, ULLONG_MAX);
+	// printf("2: %zx, %zx\n", 0, ULLONG_MAX);
+
+	// ft_printf("1: {% 03d}\n", 0);
+	// printf("2: {% 03d}\n\n", 0);
+
+	// ft_printf("1: % d\n", 0);
+	// printf("2: % d\n\n", 0);
+
+	// ft_printf("1: % +d\n", 42);
+	// printf("2: % +d\n\n", 42);
+
+	// ft_printf("1: % 10.5d\n", 4242);
+	// printf("2: % 10.5d\n\n", 4242);
+
+
+	// ft_printf("{%5p}\n", 0);
+	// printf("{%5p}\n\n", 0);
+	
 	// for(int i = 0; i < 30; i++)
 	// 	printf("%c\n", i);
 

@@ -21,7 +21,8 @@ SRCS_FILES =	ft_printf.c additional.c pf_itoa_base.c \
 				spec_hex.c \
 				spec_f.c \
 				spec_p.c \
-				spec_n.c 
+				spec_n.c \
+				spec_e.c
 
 LIBFT_FUNCS =	atoi dtoa isdigit itoa_base printchr putchar \
 				putstr str_fixlen strchr strdel strdup \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inside.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 14:53:10 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:08:00 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int				print_unsigned(va_list *ap, t_spec *spec, int *len);
 int				print_hex(va_list *ap, t_spec *spec, int *len);
 int				print_hex_upper(va_list *ap, t_spec *spec, int *len);
 int				print_float(va_list *ap, t_spec *spec, int *len);
+int				print_efloat(va_list *ap, t_spec *spec, int *len);
 int				print_char(va_list *ap, t_spec *spec, int *len);
 int				print_string(va_list *ap, t_spec *spec, int *len);
 int				print_pointer(va_list *ap, t_spec *spec, int *len);
