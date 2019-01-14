@@ -6,13 +6,13 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:22:47 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 17:56:30 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 18:29:42 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inside.h"
 
-static char	*ft_extend_itoa(long long n, int discharges, int need_sign)
+static char		*ft_extend_itoa(long long n, int discharges, int need_sign)
 {
 	long long	unsig_n;
 	int			tmp;
@@ -57,31 +57,16 @@ static intmax_t	get_value(va_list *ap, t_spec *spec)
 		return (va_arg(*ap, int));
 }
 
-static char *get_string_value(intmax_t value, t_spec *spec)
+static char		*get_string_value(intmax_t value, t_spec *spec)
 {
 	if (value || spec->accuracy)
 	{
-		// if (spec->size == SIZE_L)
-		// 	return (ft_extend_itoa(
-		// 		(int64_t)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
-		// else if (spec->size == SIZE_l)
-		// 	return (ft_extend_itoa(
-		// 		(long)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
-		// else if (spec->size == SIZE_ll)
-		// 	return (ft_extend_itoa(
-		// 		(long long)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 		if (spec->size == SIZE_h)
 			return (ft_extend_itoa(
 				(short int)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 		else if (spec->size == SIZE_hh)
 			return (ft_extend_itoa(
 				(signed char)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
-		// else if (spec->size == SIZE_j)
-		// 	return (ft_extend_itoa(
-		// 		value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
-		// else if (spec->size == SIZE_z)
-		// 	return (ft_extend_itoa(
-		// 		(size_t)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 		else
 			return (ft_extend_itoa(
 				value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
@@ -89,15 +74,14 @@ static char *get_string_value(intmax_t value, t_spec *spec)
 	return (ft_strnew(0));
 }
 
-int			print_number(va_list *ap, t_spec *spec, int *len)
+int				print_number(va_list *ap, t_spec *spec, int *len)
 {
 	char		*res;
 	int			tmp;
 	intmax_t	value;
 
 	value = get_value(ap, spec);
-	if (spec->accuracy == -1
-		&& CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
+	if (spec->accuracy == -1 && CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
 	{
 		if (value < 0 || CHECK_FLAG(FLAG_PLUS))
 			spec->width--;
@@ -118,4 +102,10 @@ int			print_number(va_list *ap, t_spec *spec, int *len)
 	free(res);
 	*len += tmp;
 	return (1);
+}
+
+int				print_long_number(va_list *ap, t_spec *spec, int *len)
+{
+	spec->size = SIZE_l;
+	return (print_number(ap, spec, len));
 }

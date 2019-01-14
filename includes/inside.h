@@ -6,7 +6,11 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/01/14 20:04:23 by anorjen          ###   ########.fr       */
+=======
+/*   Updated: 2019/01/14 20:10:02 by rschuppe         ###   ########.fr       */
+>>>>>>> local-master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +71,11 @@ char			get_size(char *body);
 int				write_len(va_list *ap, t_spec *spec, int *len);
 int				print_percent(va_list *ap, t_spec *spec, int *len);
 int				print_number(va_list *ap, t_spec *spec, int *len);
+int				print_long_number(va_list *ap, t_spec *spec, int *len);
 int				print_octal(va_list *ap, t_spec *spec, int *len);
+int				print_long_octal(va_list *ap, t_spec *spec, int *len);
 int				print_unsigned(va_list *ap, t_spec *spec, int *len);
+int				print_long_unsigned(va_list *ap, t_spec *spec, int *len);
 int				print_hex(va_list *ap, t_spec *spec, int *len);
 int				print_hex_upper(va_list *ap, t_spec *spec, int *len);
 int				print_float(va_list *ap, t_spec *spec, int *len);
@@ -78,9 +85,19 @@ int				print_afloat(va_list *ap, t_spec *spec, int *len);
 int				print_afloat_upper(va_list *ap, t_spec *spec, int *len);
 int				print_char(va_list *ap, t_spec *spec, int *len);
 int				print_string(va_list *ap, t_spec *spec, int *len);
+int				print_long_string(va_list *ap, t_spec *spec, int *len);
 int				print_pointer(va_list *ap, t_spec *spec, int *len);
 int				print_binary(va_list *ap, t_spec *spec, int *len);
 
 char			*pf_uitoa_base(unsigned long long num, int base, int len);
+
+size_t			ft_wcslen(const wchar_t *s);
+wchar_t			*ft_wcsnew(size_t size);
+wchar_t			*ft_wcscpy(wchar_t *dest, const wchar_t *src);
+wchar_t			*ft_wcsjoin(wchar_t const *s1, wchar_t const *s2);
+wchar_t			*ft_wcsdup(const wchar_t *src);
+wchar_t			*ft_wcscut(wchar_t const *s, size_t len);
+int				ft_wcsfixlen(wchar_t **str, wchar_t ch, int width, int side);
+void			ft_putwstr(wchar_t const *s);
 
 #endif

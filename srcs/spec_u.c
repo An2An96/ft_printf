@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:55:39 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 16:58:48 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 18:29:22 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,10 @@ int			print_unsigned(va_list *ap, t_spec *spec, int *len)
 	free(res);
 	*len += tmp;
 	return (1);
+}
+
+int			print_long_unsigned(va_list *ap, t_spec *spec, int *len)
+{
+	spec->size = SIZE_l;
+	return (print_unsigned(ap, spec, len));
 }
