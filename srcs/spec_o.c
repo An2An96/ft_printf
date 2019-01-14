@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:28:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 16:58:56 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 18:29:38 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,10 @@ int			print_octal(va_list *ap, t_spec *spec, int *len)
 	free(res);
 	*len += tmp;
 	return (1);
+}
+
+int			print_long_octal(va_list *ap, t_spec *spec, int *len)
+{
+	spec->size = SIZE_l;
+	return (print_octal(ap, spec, len));
 }

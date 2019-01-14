@@ -16,8 +16,11 @@ int main()
 	// ft_printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
 	// printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
 
-	ft_printf("% d\n", -9999);
-	printf("% d", -9999);
+	ft_printf("%s\n", "abc");
+
+	int g = ft_printf("%S\n", L"我是一只猫。");
+	int h = printf("%S\n", L"我是一只猫。");
+	printf("%d %d", g, h);
 
 	// int c = ft_printf("1: %jd\n", -9223372036854775808);
 	// int d = printf("2: %jd\n", -9223372036854775808);
@@ -32,17 +35,17 @@ int main()
 	// c = printf("%ls", L"\u2620");  //printf("2: %ls\n", L"ααα");
 	// printf("%d %d\n", a, c);
 
-	ft_printf("1: %e\n", -2.0);
-	printf("2: %e\n", -2.0);
+	// ft_printf("1: %e\n", -2.0);
+	// printf("2: %e\n", -2.0);
 
-	ft_printf("1: %e\n", 0.013);
-	printf("2: %e\n", 0.013);
+	// ft_printf("1: %e\n", 0.013);
+	// printf("2: %e\n", 0.013);
 
-	ft_printf("1: %e\n", 123.786);
-	printf("2: %e\n", 123.786);
+	// ft_printf("1: %e\n", 123.786);
+	// printf("2: %e\n", 123.786);
 
-	ft_printf("1: %e\n", 8.0003432121213);
-	printf("2: %e\n", 8.0003432121213);
+	// ft_printf("1: %e\n", 8.0003432121213);
+	// printf("2: %e\n", 8.0003432121213);
 
 	// printf("%e\n", 8.76);
 	// printf("%a\n", 8.76);

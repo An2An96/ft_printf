@@ -9,8 +9,7 @@ C_INCLUDE_PATH += includes/ libft/includes
 FLAGS = -g -Wall -Werror -Wextra
 FLAGS += $(foreach path,$(C_INCLUDE_PATH),-I$(path))
 
-
-SRCS_FILES =	ft_printf.c additional.c pf_itoa_base.c \
+SRCS_FILES =	ft_printf.c additional.c pf_itoa_base.c ft_wcsjoin.c \
 				spec_percent.c \
 				spec_c.c \
 				spec_b.c \

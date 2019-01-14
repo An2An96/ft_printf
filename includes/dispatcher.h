@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 14:51:09 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 16:11:07 by anorjen          ###   ########.fr       */
+/*   Updated: 2019/01/14 18:31:57 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 const t_formatter	g_dispatcher[] = {
 	{ '%', &print_percent },
 	{ 'd', &print_number },
-	{ 'D', &print_number },
+	{ 'D', &print_long_number },
 	{ 'i', &print_number },
 	{ 'o', &print_octal },
-	{ 'O', &print_octal },
+	{ 'O', &print_long_octal },
 	{ 'u', &print_unsigned },
-	{ 'U', &print_unsigned },
+	{ 'U', &print_long_unsigned },
 	{ 'x', &print_hex },
 	{ 'X', &print_hex_upper },
 	{ 'f', &print_float },
@@ -33,7 +33,7 @@ const t_formatter	g_dispatcher[] = {
 	{ 'c', &print_char },
 	{ 'C', &print_char },
 	{ 's', &print_string },
-	{ 'S', &print_string },
+	{ 'S', &print_long_string },
 	{ 'p', &print_pointer },
 	{ 'b', &print_binary },
 	{ 'n', &write_len },
