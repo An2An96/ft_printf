@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 14:47:14 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:59:05 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static char	*ft_iina(uintmax_t value, char size, int len)
 {
-	if (size == SIZE_l)
+	if (size == SIZE_L)
+		return (pf_uitoa_base((uint64_t)value, 16, len));
+	else if (size == SIZE_l)
 		return (pf_uitoa_base((unsigned long)value, 16, len));
 	else if (size == SIZE_ll)
 		return (pf_uitoa_base((unsigned long long)value, 16, len));

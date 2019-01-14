@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 13:29:25 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 17:38:25 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int			print_string(va_list *ap, t_spec *spec, int *len)
 	value = va_arg(*ap, char*);
 	if (!value)
 	{
-		if (!spec->width)
-			value = ft_strjoin(value, "(null)");
-		else
-			value = ft_strnew(0);
+		// if (!spec->width)
+		value = ft_strjoin(value, "(null)");
+		// else
+		// 	value = ft_strnew(0);
 	}
 	else
 		value = ft_strdup(value);

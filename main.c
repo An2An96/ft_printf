@@ -13,8 +13,15 @@ int main()
 
 	p = &b[0];
 	// ft_printf("%+#10.5hhd %c %s %p", 123, 'A', "Hello World", b);
-	ft_printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
-	printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
+	// ft_printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
+	// printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
+
+	ft_printf("% d\n", -9999);
+	printf("% d", -9999);
+
+	// int c = ft_printf("1: %jd\n", -9223372036854775808);
+	// int d = printf("2: %jd\n", -9223372036854775808);
+	// printf("%d %d", c, d);
 
 	// ft_printf("%.5s %+d %i %o %u %x %c %p %%", "Hello World", INT_MAX, INT_MIN, 100, -100, 255, 'A', b);
 	// ft_printf("%ld\n", LLONG_MAX);

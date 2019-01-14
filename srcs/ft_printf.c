@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 13:55:53 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 15:13:26 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	specifier_handler(int spec_idx, char **body, va_list *ap, int *len)
 {
 	t_spec			spec;
 
-	parse_spec_body(*body, &spec);
+	parse_spec_body(*body, ap, &spec);
 	ft_strdel(body);
 	if (spec_idx == 2 || spec_idx == 5 || spec_idx == 7)
 		spec.size = SIZE_l;

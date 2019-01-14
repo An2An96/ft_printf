@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inside.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 16:08:00 by anorjen          ###   ########.fr       */
+/*   Updated: 2019/01/14 17:59:50 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ typedef struct	s_formater {
 }				t_formatter;
 
 int				find_specifier(const char ch);
-void			parse_spec_body(char *body, t_spec *spec);
+void			parse_spec_body(char *body, va_list *ap, t_spec *spec);
 int				is_spec_body_char(char ch);
 char			get_flags(char **body);
-int				get_accuracy(char *body);
+int				get_accuracy(char *body, va_list *ap);
 char			get_size(char *body);
 
 int				write_len(va_list *ap, t_spec *spec, int *len);
