@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/28 13:20:30 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 13:29:25 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ static char	*ft_strcut(char const *s, size_t len)
 	return (res);
 }
 
-int			print_string(void *value, t_spec *spec, int *len)
+int			print_string(va_list *ap, t_spec *spec, int *len)
 {
 	int		tmp;
+	char	*value;
 	char	*res;
 
+	value = va_arg(*ap, char*);
 	if (!value)
 	{
 		if (!spec->width)

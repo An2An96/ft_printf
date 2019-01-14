@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 22:46:55 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:53:10 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,16 @@
 # define FLAG_OCTOP		8
 # define FLAG_ZERO		16
 
-enum			e_types
-{
-	TYPE_NONE,
-	TYPE_INT,
-	TYPE_PTR,
-	TYPE_DOUBLE,
-	TYPE_UNSIGNED
-};
-
 typedef enum	e_sp_size
 {
 	SIZE_NONE,
+	SIZE_L,
 	SIZE_l,
+	SIZE_ll,
 	SIZE_hh,
 	SIZE_h,
-	SIZE_ll,
-	SIZE_z,
-	SIZE_L
+	SIZE_j,
+	SIZE_z
 }				t_sp_size;
 
 typedef struct	s_value_types {
@@ -62,8 +54,7 @@ typedef struct	s_spec {
 
 typedef struct	s_formater {
 	char		type_specifier;
-	int			(*func)(void*, t_spec*, int*);
-	char		arg_type;
+	int			(*func)(va_list*, t_spec*, int*);
 }				t_formatter;
 
 int				find_specifier(const char ch);
@@ -73,23 +64,18 @@ char			get_flags(char **body);
 int				get_accuracy(char *body);
 char			get_size(char *body);
 
-void			double_handler(t_spec *spec, t_value_types *value, va_list *ap);
-void			int_handler(t_spec *spec, t_value_types *value, va_list *ap);
-void			unsigned_handler(
-	t_spec *spec, t_value_types *value, va_list *ap);
-
-int				write_len(void *value, t_spec *spec, int *len);
-int				print_percent(void *value, t_spec *spec, int *len);
-int				print_number(void *value, t_spec *spec, int *len);
-int				print_octal(void *value, t_spec *spec, int *len);
-int				print_unsigned(void *value, t_spec *spec, int *len);
-int				print_hex(void *value, t_spec *spec, int *len);
-int				print_hex_upper(void *value, t_spec *spec, int *len);
-int				print_float(void *value, t_spec *spec, int *len);
-int				print_char(void *value, t_spec *spec, int *len);
-int				print_string(void *value, t_spec *spec, int *len);
-int				print_pointer(void *value, t_spec *spec, int *len);
-int				print_binary(void *value, t_spec *spec, int *len);
+int				write_len(va_list *ap, t_spec *spec, int *len);
+int				print_percent(va_list *ap, t_spec *spec, int *len);
+int				print_number(va_list *ap, t_spec *spec, int *len);
+int				print_octal(va_list *ap, t_spec *spec, int *len);
+int				print_unsigned(va_list *ap, t_spec *spec, int *len);
+int				print_hex(va_list *ap, t_spec *spec, int *len);
+int				print_hex_upper(va_list *ap, t_spec *spec, int *len);
+int				print_float(va_list *ap, t_spec *spec, int *len);
+int				print_char(va_list *ap, t_spec *spec, int *len);
+int				print_string(va_list *ap, t_spec *spec, int *len);
+int				print_pointer(va_list *ap, t_spec *spec, int *len);
+int				print_binary(va_list *ap, t_spec *spec, int *len);
 
 char			*pf_uitoa_base(unsigned long long num, int base, int len);
 

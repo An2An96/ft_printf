@@ -6,30 +6,34 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:28:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/28 13:04:58 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:27:51 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inside.h"
 
-static char	*get_value(void *value, t_spec *spec)
+static char	*get_value(va_list *ap, t_spec *spec)
 {
-	char	*res;
+	char		*res;
+	uintmax_t	value;
 
-	if (*((int*)value) != 0 || spec->accuracy != 0)
+	value = va_arg(*ap, uintmax_t);
+	if (value || spec->accuracy)
 	{
 		if (spec->size == SIZE_l)
-			res = ft_uitoa_base(*((unsigned long*)value), 8);
+			res = ft_uitoa_base((unsigned long)value, 8);
 		else if (spec->size == SIZE_ll)
-			res = ft_uitoa_base(*((unsigned long long*)value), 8);
+			res = ft_uitoa_base((unsigned long long)value, 8);
 		else if (spec->size == SIZE_h)
-			res = ft_uitoa_base(*((unsigned short int*)value), 8);
+			res = ft_uitoa_base((unsigned short int)value, 8);
 		else if (spec->size == SIZE_hh)
-			res = ft_uitoa_base(*((unsigned char*)value), 8);
+			res = ft_uitoa_base((unsigned char)value, 8);
+		else if (spec->size == SIZE_j)
+			res = ft_uitoa_base(value, 8);
 		else if (spec->size == SIZE_z)
-			res = ft_uitoa_base(*((ssize_t*)value), 8);
+			res = ft_uitoa_base((size_t)value, 8);
 		else
-			res = ft_uitoa_base(*((unsigned int*)value), 8);
+			res = ft_uitoa_base((unsigned int)value, 8);
 		ft_str_fixlen(&res, '0', spec->accuracy, 0);
 	}
 	else
@@ -37,12 +41,13 @@ static char	*get_value(void *value, t_spec *spec)
 	return (res);
 }
 
-int			print_octal(void *value, t_spec *spec, int *len)
+int			print_octal(va_list *ap, t_spec *spec, int *len)
 {
 	int		tmp;
 	char	*res;
+	char	*value;
 
-	res = get_value(value, spec);
+	res = get_value(ap, spec);
 	if (!res)
 		return (0);
 	tmp = ft_strlen(res);

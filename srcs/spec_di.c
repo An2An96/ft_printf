@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:22:47 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 22:26:09 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:28:14 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,46 @@ static char	*ft_extend_itoa(long long n, int discharges, int need_sign)
 	return (res);
 }
 
-static char	*get_value(void *value, t_spec *spec)
+static char	*get_value(intmax_t value, t_spec *spec)
 {
-	if (spec->accuracy || *((long long*)value))
+	if (value || spec->accuracy)
 	{
 		if (spec->size == SIZE_l)
 			return (ft_extend_itoa(
-				*((long*)value), spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
+				(long)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 		else if (spec->size == SIZE_ll)
 			return (ft_extend_itoa(
-				*((long long*)value), spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
+				(long long)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 		else if (spec->size == SIZE_h)
 			return (ft_extend_itoa(
-				*((short int*)value), spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
+				(short int)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 		else if (spec->size == SIZE_hh)
 			return (ft_extend_itoa(
-				*((signed char*)value), spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
+				(signed char)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
+		else if (spec->size == SIZE_j)
+			return (ft_extend_itoa(
+				value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 		else if (spec->size == SIZE_z)
 			return (ft_extend_itoa(
-				*((ssize_t*)value), spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
+				(size_t)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 		else
 			return (ft_extend_itoa(
-				*((int*)value), spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
+				(int)value, spec->accuracy, CHECK_FLAG(FLAG_PLUS)));
 	}
 	return (ft_strnew(0));
 }
 
-int			print_number(void *value, t_spec *spec, int *len)
+int			print_number(va_list *ap, t_spec *spec, int *len)
 {
 	char	*res;
 	int		tmp;
+	intmax_t value;
 
+	value = va_arg(*ap, intmax_t);
 	if (spec->accuracy == -1
 		&& CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
 	{
-		if (*((long long*)value) < 0 || CHECK_FLAG(FLAG_PLUS))
+		if (value < 0 || CHECK_FLAG(FLAG_PLUS))
 			spec->width--;
 		spec->accuracy = spec->accuracy > spec->width ? spec->accuracy
 			: spec->width - (CHECK_FLAG(FLAG_SPACE) && !CHECK_FLAG(FLAG_PLUS));
@@ -85,7 +90,7 @@ int			print_number(void *value, t_spec *spec, int *len)
 		return (0);
 	tmp = ft_str_fixlen(&res, ' ', spec->width, CHECK_FLAG(FLAG_MINUS));
 	if (!spec->width && CHECK_FLAG(FLAG_SPACE)
-		&& !CHECK_FLAG(FLAG_PLUS) && *((long long*)value) >= 0)
+		&& !CHECK_FLAG(FLAG_PLUS) && value >= 0)
 	{
 		ft_putchar(' ');
 		tmp++;

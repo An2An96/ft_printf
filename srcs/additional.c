@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 15:09:37 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 22:07:24 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:17:17 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	parse_spec_body(char *body, t_spec *spec)
 int		is_spec_body_char(char ch)
 {
 	return (ft_isdigit(ch) || ch == ' ' || ch == '-' || ch == '+' || ch == '#'
-		|| ch == '.' || ch == 'l' || ch == 'h' || ch == 'L' || ch == 'z');
+		|| ch == '.' || ch == 'l' || ch == 'h' || ch == 'L' || ch == 'z'
+		|| ch == 'j');
 }
 
 char	get_flags(char **body)
@@ -79,6 +80,8 @@ char	get_size(char *body)
 				size = body[1] == 'h' ? SIZE_hh : SIZE_h;
 			else if (body[0] == 'z')
 				size = SIZE_z;
+			else if (body[0] == 'j')
+				size = SIZE_j;
 			body++;
 		}
 	}

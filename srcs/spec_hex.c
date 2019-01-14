@@ -6,36 +6,40 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/28 13:06:02 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:47:14 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inside.h"
 
-static char	*ft_iina(void *value, char size, int len)
+static char	*ft_iina(uintmax_t value, char size, int len)
 {
 	if (size == SIZE_l)
-		return (pf_uitoa_base(*((unsigned long*)value), 16, len));
+		return (pf_uitoa_base((unsigned long)value, 16, len));
 	else if (size == SIZE_ll)
-		return (pf_uitoa_base(*((unsigned long long*)value), 16, len));
+		return (pf_uitoa_base((unsigned long long)value, 16, len));
 	else if (size == SIZE_hh)
-		return (pf_uitoa_base(*((unsigned char*)value), 16, len));
+		return (pf_uitoa_base((unsigned char)value, 16, len));
 	else if (size == SIZE_h)
-		return (pf_uitoa_base(*((unsigned short int*)value), 16, len));
+		return (pf_uitoa_base((unsigned short int)value, 16, len));
+	else if (size == SIZE_j)
+		return (pf_uitoa_base(value, 16, len));
 	else if (size == SIZE_z)
-		return (pf_uitoa_base(*((size_t*)value), 16, len));
-	return (pf_uitoa_base(*((unsigned int*)value), 16, len));
+		return (pf_uitoa_base((size_t)value, 16, len));
+	return (pf_uitoa_base((unsigned int)value, 16, len));
 }
 
-static int	checkacc(void *value, t_spec *spec, char **res, int *ox)
+static int	checkacc(va_list *ap, t_spec *spec, char **res, int *ox)
 {
-	char	*buf;
+	char		*buf;
+	uintmax_t	value;
 
 	*ox = 0;
+	value = va_arg(*ap, uintmax_t);
 	if (spec->accuracy == -1 || spec->accuracy > 0)
 	{
 		buf = *res;
-		if (CHECK_FLAG(FLAG_OCTOP) && (*((long long*)value) != 0))
+		if (CHECK_FLAG(FLAG_OCTOP) && value)
 			*ox = 2;
 		if (CHECK_FLAG(FLAG_ZERO) && !(CHECK_FLAG(FLAG_MINUS)))
 			spec->accuracy = (spec->accuracy == -1
@@ -51,12 +55,12 @@ static int	checkacc(void *value, t_spec *spec, char **res, int *ox)
 		return (0);
 }
 
-static void	ft_getstr(char **res, void *value, t_spec *spec)
+static void	ft_getstr(char **res, va_list *ap, t_spec *spec)
 {
 	int		ox;
 	char	*buf;
 
-	if (checkacc(value, spec, res, &ox) == -1)
+	if (checkacc(ap, spec, res, &ox) == -1)
 		return ;
 	if (spec->width > 1 && spec->width - (ft_strlen(*res) + ox) > 0)
 	{
@@ -77,12 +81,12 @@ static void	ft_getstr(char **res, void *value, t_spec *spec)
 	}
 }
 
-int			print_hex(void *value, t_spec *spec, int *len)
+int			print_hex(va_list *ap, t_spec *spec, int *len)
 {
 	char	*res;
 
 	res = ft_strdup("");
-	ft_getstr(&res, value, spec);
+	ft_getstr(&res, ap, spec);
 	if (res == NULL)
 		return (0);
 	ft_putstr(res);
@@ -91,12 +95,12 @@ int			print_hex(void *value, t_spec *spec, int *len)
 	return (1);
 }
 
-int			print_hex_upper(void *value, t_spec *spec, int *len)
+int			print_hex_upper(va_list *ap, t_spec *spec, int *len)
 {
 	char	*res;
 
 	res = ft_strdup("");
-	ft_getstr(&res, value, spec);
+	ft_getstr(&res, ap, spec);
 	if (res == NULL)
 		return (0);
 	ft_strupper(res);

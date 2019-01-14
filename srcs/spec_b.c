@@ -6,26 +6,28 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 17:32:20 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 22:07:23 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 13:11:58 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inside.h"
 
-static char	*get_value(void *value, t_spec *spec)
+static char	*get_value(va_list *ap, t_spec *spec)
 {
+	ssize_t	val;
 	char	*res;
 
-	if (*((int*)value) != 0 || spec->accuracy != 0)
+	val = va_arg(*ap, ssize_t);
+	if (val != 0 || spec->accuracy != 0)
 	{
 		if (spec->size == SIZE_l)
-			res = ft_uitoa_base(*((long*)value), 2);
+			res = ft_uitoa_base((long)val, 2);
 		else if (spec->size == SIZE_ll)
-			res = ft_uitoa_base(*((long long*)value), 2);
+			res = ft_uitoa_base((long long)val, 2);
 		else if (spec->size == SIZE_z)
-			res = ft_uitoa_base(*((ssize_t*)value), 2);
+			res = ft_uitoa_base(val, 2);
 		else
-			res = ft_uitoa_base(*((int*)value), 2);
+			res = ft_uitoa_base((int)val, 2);
 		ft_str_fixlen(&res, '0', spec->accuracy, 0);
 	}
 	else
@@ -33,12 +35,12 @@ static char	*get_value(void *value, t_spec *spec)
 	return (res);
 }
 
-int			print_binary(void *value, t_spec *spec, int *len)
+int			print_binary(va_list *ap, t_spec *spec, int *len)
 {
 	int		tmp;
 	char	*res;
 
-	res = get_value(value, spec);
+	res = get_value(ap, spec);
 	if (!res)
 		return (0);
 	tmp = ft_strlen(res);

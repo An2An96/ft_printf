@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 23:48:55 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 13:55:53 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,13 @@ int			find_specifier(const char ch)
 
 static int	specifier_handler(int spec_idx, char **body, va_list *ap, int *len)
 {
-	t_value_types	value;
 	t_spec			spec;
 
 	parse_spec_body(*body, &spec);
 	ft_strdel(body);
 	if (spec_idx == 2 || spec_idx == 5 || spec_idx == 7)
 		spec.size = SIZE_l;
-	if (g_dispatcher[spec_idx].arg_type == TYPE_PTR)
-		value.p_value = va_arg(*ap, void*);
-	else if (g_dispatcher[spec_idx].arg_type == TYPE_INT)
-		int_handler(&spec, &value, ap);
-	else if (g_dispatcher[spec_idx].arg_type == TYPE_DOUBLE)
-		double_handler(&spec, &value, ap);
-	else if (g_dispatcher[spec_idx].arg_type == TYPE_UNSIGNED)
-		unsigned_handler(&spec, &value, ap);
-	if (g_dispatcher[spec_idx].func(value.p_value, &spec, len))
+	if (g_dispatcher[spec_idx].func(ap, &spec, len))
 		return (1);
 	else
 	{

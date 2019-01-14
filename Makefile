@@ -10,9 +10,18 @@ FLAGS = -g -Wall -Werror -Wextra
 FLAGS += $(foreach path,$(C_INCLUDE_PATH),-I$(path))
 
 
-SRCS_FILES =	ft_printf.c additional.c type_handlers.c pf_itoa_base.c \
-				spec_percent.c spec_di.c spec_o.c spec_u.c spec_hex.c spec_f.c \
-				spec_s.c spec_c.c spec_p.c spec_b.c spec_n.c 
+SRCS_FILES =	ft_printf.c additional.c pf_itoa_base.c \
+				spec_percent.c \
+				spec_c.c \
+				spec_b.c \
+				spec_di.c \
+				spec_s.c \
+				spec_u.c \
+				spec_o.c \
+				spec_hex.c \
+				spec_f.c \
+				spec_p.c \
+				spec_n.c 
 
 LIBFT_FUNCS =	atoi dtoa isdigit itoa_base printchr putchar \
 				putstr str_fixlen strchr strdel strdup \

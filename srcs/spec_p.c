@@ -6,17 +6,19 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:23:45 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/28 13:12:40 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 13:50:39 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inside.h"
 
-int	print_pointer(void *value, t_spec *spec, int *len)
+int	print_pointer(va_list *ap, t_spec *spec, int *len)
 {
 	char *res;
+	void *value;
 
 	(void)spec;
+	value = va_arg(*ap, void*);
 	if ((size_t)value)
 		res = ft_itoa_base((size_t)value, 16);
 	else

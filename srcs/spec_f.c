@@ -6,13 +6,13 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:37:13 by rschuppe          #+#    #+#             */
-/*   Updated: 2018/12/27 22:07:34 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/14 13:51:44 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inside.h"
 
-int	print_float(void *value, t_spec *spec, int *len)
+int	print_float(va_list *ap, t_spec *spec, int *len)
 {
 	char	*res;
 	int		i;
@@ -23,9 +23,9 @@ int	print_float(void *value, t_spec *spec, int *len)
 		c = '0';
 	spec->accuracy = spec->accuracy == -1 ? 6 : spec->accuracy;
 	if (spec->size == SIZE_L)
-		res = ft_dtoa(*((long double*)value), spec->accuracy);
+		res = ft_dtoa(va_arg(*ap, long double), spec->accuracy);
 	else
-		res = ft_dtoa(*((double*)value), spec->accuracy);
+		res = ft_dtoa(va_arg(*ap, double), spec->accuracy);
 	if (!res)
 		return (0);
 	i = spec->width - ft_strlen(res);
