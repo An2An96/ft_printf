@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_wcslen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 12:58:33 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 19:48:56 by rschuppe         ###   ########.fr       */
+/*   Created: 2019/01/15 19:17:04 by rschuppe          #+#    #+#             */
+/*   Updated: 2019/01/15 19:17:19 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+size_t	ft_wcslen(const wchar_t *s)
 {
-	write(1, &c, 1);
+	size_t i;
+
+	i = 0;
+	if (s)
+		while (s[i] != '\0')
+			i++;
+	return (i);
 }

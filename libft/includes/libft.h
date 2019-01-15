@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:45:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 19:54:46 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/15 19:49:15 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
-void				ft_putchar(wchar_t c);
+void				ft_putchar(char c);
+void				ft_putwchar(wchar_t c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
 void				ft_putnbr(long long n);
@@ -100,5 +101,13 @@ char				*ft_stoa(ssize_t nbr);
 void				ft_printchr(int counts, char c);
 int					ft_str_fixlen(char **str, char ch, int width, int side);
 void				ft_strupper(char *str);
+
+void				*ft_wmemset(wchar_t *str, int c, size_t n);
+void				*ft_wmemmove(wchar_t *dst, const wchar_t *src, size_t len);
+size_t				ft_wcslen(const wchar_t *s);
+wchar_t				*ft_wcsnew(size_t size);
+wchar_t				*ft_wcscpy(wchar_t *dest, const wchar_t *src);
+wchar_t				*ft_wcsjoin(wchar_t const *s1, wchar_t const *s2);
+wchar_t				*ft_wcsdup(const wchar_t *src);
 
 #endif

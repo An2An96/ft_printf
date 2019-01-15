@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_wmemset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 12:58:33 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 19:48:56 by rschuppe         ###   ########.fr       */
+/*   Created: 2019/01/15 19:11:02 by rschuppe          #+#    #+#             */
+/*   Updated: 2019/01/15 19:11:17 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+void	*ft_wmemset(wchar_t *str, int c, size_t n)
 {
-	write(1, &c, 1);
+	while (n > 0)
+	{
+		str[n - 1] = c;
+		n--;
+	}
+	return (str);
 }

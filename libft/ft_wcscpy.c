@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_wcscpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 12:58:33 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 19:48:56 by rschuppe         ###   ########.fr       */
+/*   Created: 2019/01/15 19:18:08 by rschuppe          #+#    #+#             */
+/*   Updated: 2019/01/15 19:18:17 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+wchar_t	*ft_wcscpy(wchar_t *dest, const wchar_t *src)
 {
-	write(1, &c, 1);
+	unsigned int i;
+
+	i = 0;
+	if (src)
+	{
+		while (src[i] != '\0')
+		{
+			dest[i] = src[i];
+			i++;
+		}
+	}
+	dest[i] = '\0';
+	return (dest);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_wcsnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 12:58:33 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 19:48:56 by rschuppe         ###   ########.fr       */
+/*   Created: 2019/01/15 19:22:18 by rschuppe          #+#    #+#             */
+/*   Updated: 2019/01/15 19:22:25 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+wchar_t	*ft_wcsnew(size_t size)
 {
-	write(1, &c, 1);
+	return (wchar_t*)ft_memalloc((size + 1) * sizeof(wchar_t));
 }
