@@ -6,11 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 14:51:09 by rschuppe          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/01/14 18:09:41 by anorjen          ###   ########.fr       */
-=======
-/*   Updated: 2019/01/14 18:31:57 by rschuppe         ###   ########.fr       */
->>>>>>> local-master
+/*   Updated: 2019/01/15 20:00:15 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +33,7 @@ const t_formatter	g_dispatcher[] = {
 	{ 'a', &print_afloat },
 	{ 'A', &print_afloat_upper },
 	{ 'c', &print_char },
-	{ 'C', &print_char },
+	{ 'C', &print_long_char },
 	{ 's', &print_string },
 	{ 'S', &print_long_string },
 	{ 'p', &print_pointer },

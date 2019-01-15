@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   inside.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/01/14 20:04:23 by anorjen          ###   ########.fr       */
-=======
-/*   Updated: 2019/01/14 20:10:02 by rschuppe         ###   ########.fr       */
->>>>>>> local-master
+/*   Updated: 2019/01/15 20:38:08 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_INSIDE_H
 # define FT_INSIDE_H
 
-# include <stdio.h>
 # include <stdarg.h>
 # include "libft.h"
 
@@ -64,9 +59,10 @@ typedef struct	s_formater {
 int				find_specifier(const char ch);
 void			parse_spec_body(char *body, va_list *ap, t_spec *spec);
 int				is_spec_body_char(char ch);
-char			get_flags(char **body);
-int				get_accuracy(char *body, va_list *ap);
-char			get_size(char *body);
+int				get_flags(char ch, char *flags);
+int				get_accuracy(char *body, va_list *ap, int *accuracy);
+char			get_size(char *body, char *size);
+int				get_width(char *body, va_list *ap, t_spec *spec);
 
 int				write_len(va_list *ap, t_spec *spec, int *len);
 int				print_percent(va_list *ap, t_spec *spec, int *len);
@@ -83,7 +79,10 @@ int				print_efloat(va_list *ap, t_spec *spec, int *len);
 int				print_efloat_upper(va_list *ap, t_spec *spec, int *len);
 int				print_afloat(va_list *ap, t_spec *spec, int *len);
 int				print_afloat_upper(va_list *ap, t_spec *spec, int *len);
+int				print_unicode_char(wchar_t ch, t_spec *spec, int *len);
+int				print_byte_char(char ch, t_spec *spec, int *len);
 int				print_char(va_list *ap, t_spec *spec, int *len);
+int				print_long_char(va_list *ap, t_spec *spec, int *len);
 int				print_string(va_list *ap, t_spec *spec, int *len);
 int				print_long_string(va_list *ap, t_spec *spec, int *len);
 int				print_pointer(va_list *ap, t_spec *spec, int *len);
@@ -91,13 +90,10 @@ int				print_binary(va_list *ap, t_spec *spec, int *len);
 
 char			*pf_uitoa_base(unsigned long long num, int base, int len);
 
-size_t			ft_wcslen(const wchar_t *s);
-wchar_t			*ft_wcsnew(size_t size);
-wchar_t			*ft_wcscpy(wchar_t *dest, const wchar_t *src);
-wchar_t			*ft_wcsjoin(wchar_t const *s1, wchar_t const *s2);
-wchar_t			*ft_wcsdup(const wchar_t *src);
+size_t			ft_wcsbytes(const wchar_t *s);
 wchar_t			*ft_wcscut(wchar_t const *s, size_t len);
 int				ft_wcsfixlen(wchar_t **str, wchar_t ch, int width, int side);
 void			ft_putwstr(wchar_t const *s);
+int				ft_wcs_char_len(wchar_t ch);
 
 #endif

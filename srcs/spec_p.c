@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:23:45 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 13:50:39 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/15 20:37:26 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	print_pointer(va_list *ap, t_spec *spec, int *len)
 {
-	char *res;
-	void *value;
+	char	*res;
+	void	*value;
+	int		tmp;
 
 	(void)spec;
 	value = va_arg(*ap, void*);
@@ -30,8 +31,9 @@ int	print_pointer(va_list *ap, t_spec *spec, int *len)
 	free(res);
 	res = value;
 	ft_str_fixlen(&res, ' ', spec->width, CHECK_FLAG(FLAG_MINUS));
-	ft_putstr(res);
-	*len += ft_strlen(res);
+	tmp = ft_strlen(res);
+	write(1, res, tmp);
 	free(res);
+	*len += tmp;
 	return (1);
 }

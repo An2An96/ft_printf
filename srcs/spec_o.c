@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:28:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 18:29:38 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/15 20:35:56 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ static char	*get_value(va_list *ap, t_spec *spec)
 	value = va_arg(*ap, uintmax_t);
 	if (value || spec->accuracy)
 	{
-		if (spec->size == SIZE_L)
-			res = ft_uitoa_base((uint64_t)value, 8);
-		else if (spec->size == SIZE_l)
+		if (spec->size == SIZE_l)
 			res = ft_uitoa_base((unsigned long)value, 8);
 		else if (spec->size == SIZE_ll)
 			res = ft_uitoa_base((unsigned long long)value, 8);
@@ -66,7 +64,7 @@ int			print_octal(va_list *ap, t_spec *spec, int *len)
 		tmp = ft_str_fixlen(&res, '0', spec->width, 0);
 	else
 		tmp = ft_str_fixlen(&res, ' ', spec->width, 0);
-	ft_putstr(res);
+	write(1, res, tmp);
 	free(res);
 	*len += tmp;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:22:47 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 18:29:42 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/15 20:34:54 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ static char		*ft_extend_itoa(long long n, int discharges, int need_sign)
 
 static intmax_t	get_value(va_list *ap, t_spec *spec)
 {
-	if (spec->size == SIZE_L)
-		return (va_arg(*ap, int64_t));
-	else if (spec->size == SIZE_l)
+	if (spec->size == SIZE_l)
 		return (va_arg(*ap, long));
 	else if (spec->size == SIZE_ll)
 		return (va_arg(*ap, long long));
@@ -81,7 +79,8 @@ int				print_number(va_list *ap, t_spec *spec, int *len)
 	intmax_t	value;
 
 	value = get_value(ap, spec);
-	if (spec->accuracy == -1 && CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
+	if (spec->accuracy == -1
+		&& CHECK_FLAG(FLAG_ZERO) && !CHECK_FLAG(FLAG_MINUS))
 	{
 		if (value < 0 || CHECK_FLAG(FLAG_PLUS))
 			spec->width--;
@@ -96,9 +95,10 @@ int				print_number(va_list *ap, t_spec *spec, int *len)
 		&& !CHECK_FLAG(FLAG_PLUS) && value >= 0)
 	{
 		ft_putchar(' ');
-		tmp++;
+		write(1, res, tmp++);
 	}
-	ft_putstr(res);
+	else
+		write(1, res, tmp);
 	free(res);
 	*len += tmp;
 	return (1);

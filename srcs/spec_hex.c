@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 16:59:05 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/15 20:11:07 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,28 +86,32 @@ static void	ft_getstr(char **res, va_list *ap, t_spec *spec)
 int			print_hex(va_list *ap, t_spec *spec, int *len)
 {
 	char	*res;
+	int		tmp;
 
 	res = ft_strdup("");
 	ft_getstr(&res, ap, spec);
 	if (res == NULL)
 		return (0);
-	ft_putstr(res);
+	tmp = ft_strlen(res);
+	write(1, res, tmp);
 	free(res);
-	*len += ft_strlen(res);
+	*len += tmp;
 	return (1);
 }
 
 int			print_hex_upper(va_list *ap, t_spec *spec, int *len)
 {
 	char	*res;
+	int		tmp;
 
 	res = ft_strdup("");
 	ft_getstr(&res, ap, spec);
 	if (res == NULL)
 		return (0);
 	ft_strupper(res);
-	ft_putstr(res);
+	tmp = ft_strlen(res);
+	write(1, res, tmp);
 	free(res);
-	*len += ft_strlen(res);
+	*len += tmp;
 	return (1);
 }

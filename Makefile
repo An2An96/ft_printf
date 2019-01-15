@@ -21,13 +21,15 @@ SRCS_FILES =	ft_printf.c additional.c pf_itoa_base.c ft_wcsjoin.c \
 				spec_f.c \
 				spec_p.c \
 				spec_n.c \
-				spec_e.c
+				spec_e.c \
+				spec_a.c
 
-LIBFT_FUNCS =	atoi dtoa isdigit itoa_base printchr putchar \
+LIBFT_FUNCS =	atoi dtoa isdigit itoa_base printchr putchar putwchar \
 				putstr str_fixlen strchr strdel strdup \
 				strjoin strlen strlower strnew strsub \
 				strupper uitoa_base strcpy memalloc memdel memmove memcpy \
-				memset pow putstr_fd stoa tolower
+				memset pow putstr_fd stoa tolower \
+				wmemmove wmemset wcslen wcsnew wcscpy wcsjoin wcsdup
 
 SRCS =	$(foreach file,$(SRCS_FILES),$(SRCS_DIR)/$(file))
 

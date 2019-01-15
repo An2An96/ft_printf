@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 15:09:37 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 17:33:24 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/15 17:52:40 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,21 @@
 
 void	parse_spec_body(char *body, va_list *ap, t_spec *spec)
 {
-	int i;
-	int find_star;
+	int res;
 
-	spec->flags = get_flags(&body);
-
-	i = 0;
-	find_star = 0;
-	while (body[i] && body[i] != '.')
+	spec->flags = 0;
+	spec->size = SIZE_NONE;
+	spec->accuracy = -1;
+	spec->width = 0;
+	while (*body)
 	{
-		if (body[i] == '*')
-		{
-			spec->width = va_arg(*ap, int);
-			find_star = 1;
-			break ;
-		}
-		i++;
+		res = 0;
+		res = get_flags(*body, &(spec->flags));
+		!res && (res = get_size(body, &(spec->size)));
+		!res && (res = get_accuracy(body, ap, &(spec->accuracy)));
+		!res && (res = get_width(body, ap, spec));
+		body += res;
 	}
-	if (spec->width < 0)
-	{
-		spec->width *= -1;
-		spec->flags = FLAG_MINUS;
-	}
-	if (!find_star)
-		spec->width = ft_atoi(body);
-
-	spec->accuracy = get_accuracy(body, ap);
-	spec->size = get_size(body);
 }
 
 int		is_spec_body_char(char ch)
@@ -50,67 +38,122 @@ int		is_spec_body_char(char ch)
 		|| ch == 'z' || ch == 'j');
 }
 
-char	get_flags(char **body)
+int		get_number_width(int number)
 {
-	char flags;
+	int discharges;
 
-	flags = 0;
-	if (body && *body)
+	discharges = number < 0;
+	if (number == 0)
+		return (discharges + 1);
+	while (number / 10 || number % 10)
 	{
-		while (**body)
-		{
-			if (**body == '-')
-				flags |= FLAG_MINUS;
-			else if (**body == '+')
-				flags |= FLAG_PLUS;
-			else if (**body == ' ')
-				flags |= FLAG_SPACE;
-			else if (**body == '#')
-				flags |= FLAG_OCTOP;
-			else if (**body == '0')
-				flags |= FLAG_ZERO;
-			else
-				break ;
-			(*body)++;
-		}
+		number /= 10;
+		discharges++;
 	}
-	return (flags);
+	return (discharges);
 }
 
-int		get_accuracy(char *body, va_list *ap)
+int		get_width(char *body, va_list *ap, t_spec *spec)
 {
-	char	*start;
-
-	if (body && (start = ft_strchr(body, '.')))
+	if (*body == '*')
 	{
-		if (*(start + 1) == '*')
-			return (va_arg(*ap, int));
-		return (ft_atoi(start + 1));
+		spec->width = va_arg(*ap, int);
+		if (spec->width < 0)
+		{
+			spec->width *= -1;
+			spec->flags = FLAG_MINUS;
+		}
+		return (1);
 	}
-	return (-1);
+	else
+		spec->width = ft_atoi(body);
+	return (get_number_width(spec->width));
 }
 
-char	get_size(char *body)
+int		get_flags(char ch, char *flags)
 {
-	t_sp_size size;
-
-	size = SIZE_NONE;
-	if (body)
+	if (ch == '-')
 	{
-		while (*body && size == SIZE_NONE)
+		*flags |= FLAG_MINUS;
+		return (1);
+	}
+	else if (ch == '+')
+	{
+		*flags |= FLAG_PLUS;
+		return (1);
+	}
+	else if (ch == ' ')
+	{
+		*flags |= FLAG_SPACE;
+		return (1);
+	}
+	else if (ch == '#')
+	{
+		*flags |= FLAG_OCTOP;
+		return (1);
+	}
+	else if (ch == '0')
+	{
+		*flags |= FLAG_ZERO;
+		return (1);
+	}
+	return (0);
+}
+
+int		get_accuracy(char *body, va_list *ap, int *accuracy)
+{
+	if (*body == '.')
+	{
+		if (*(body + 1) == '*')
 		{
-			if (body[0] == 'L' && body[1] == '\0')
-				size = SIZE_L;
-			else if (body[0] == 'l')
-				size = body[1] == 'l' ? SIZE_ll : SIZE_l;
-			else if (body[0] == 'h')
-				size = body[1] == 'h' ? SIZE_hh : SIZE_h;
-			else if (body[0] == 'z')
-				size = SIZE_z;
-			else if (body[0] == 'j')
-				size = SIZE_j;
-			body++;
+			*accuracy = va_arg(*ap, int);
+			if (*accuracy < 0)
+				*accuracy = -1;
+			return (1 + 1);
+		}
+		else if (ft_isdigit(*(body + 1)))
+		{
+			*accuracy = ft_atoi(body + 1);
+			return (get_number_width(*accuracy) + 1);
+		}
+		else
+		{
+			*accuracy = 0;
+			return (1);
 		}
 	}
-	return (size);
+	return (0);
+}
+
+char	get_size(char *body, char *size)
+{
+	if (*body == 'L')
+		return (*size = SIZE_L);
+	else if (*body == 'l')
+	{
+		if (*(body + 1) == 'l')
+		{
+			*size = SIZE_ll;
+			return (2);
+		}
+		else
+			*size = SIZE_l;
+		return (1);
+	}
+	else if (*body == 'h')
+	{
+		if (*(body + 1) == 'h')
+		{
+			*size = SIZE_hh;
+			return (2);
+		}
+		else
+			*size = SIZE_h;
+		return (1);
+	}
+	else if (*body == 'z')
+		return (*size = SIZE_z);
+	else if (*body == 'j')
+		return (*size = SIZE_j);
+	return (0);
 }

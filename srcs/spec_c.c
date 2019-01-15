@@ -6,25 +6,44 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:09:14 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 19:00:34 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/15 20:05:52 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inside.h"
 
-int	print_char(va_list *ap, t_spec *spec, int *len)
+int	print_unicode_char(wchar_t ch, t_spec *spec, int *len)
 {
 	int		i;
-	wchar_t	ch;
+	char	ch_width;
 
 	i = 0;
-	if (spec->size == SIZE_l)
-		ch = va_arg(*ap, wchar_t);
-	else
-		ch = va_arg(*ap, int);
+	ch_width = ft_wcs_char_len(ch);
+	spec->width -= ch_width;
 	if (CHECK_FLAG(FLAG_MINUS))
 	{
-		ft_putchar(ch);
+		ft_putwchar(ch);
+		while (i++ < spec->width)
+			ft_putchar(' ');
+	}
+	else
+	{
+		while (i++ < spec->width)
+			ft_putchar(CHECK_FLAG(FLAG_ZERO) ? '0' : ' ');
+		ft_putwchar(ch);
+	}
+	*len += (spec->width > 0 ? spec->width : 0) + ch_width;
+	return (1);
+}
+
+int	print_byte_char(char ch, t_spec *spec, int *len)
+{
+	int		i;
+
+	i = 0;
+	if (CHECK_FLAG(FLAG_MINUS))
+	{
+		ft_putwchar(ch);
 		while (++i < spec->width)
 			ft_putchar(' ');
 	}
@@ -32,14 +51,22 @@ int	print_char(va_list *ap, t_spec *spec, int *len)
 	{
 		while (++i < spec->width)
 			ft_putchar(CHECK_FLAG(FLAG_ZERO) ? '0' : ' ');
-		ft_putchar(ch);
+		ft_putwchar(ch);
 	}
-	*len += spec->width > 1 ? spec->width : 1;
+	*len += spec->width > 0 ? spec->width : 1;
 	return (1);
+}
+
+int	print_char(va_list *ap, t_spec *spec, int *len)
+{
+	if (spec->size == SIZE_l)
+		return (print_unicode_char(va_arg(*ap, wchar_t), spec, len));
+	else
+		return (print_byte_char(va_arg(*ap, int), spec, len));
 }
 
 int	print_long_char(va_list *ap, t_spec *spec, int *len)
 {
 	spec->size = SIZE_l;
-	return (print_char(ap, spec, len));	
+	return (print_char(ap, spec, len));
 }
