@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   inside.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2019/01/16 14:57:57 by rschuppe         ###   ########.fr       */
+=======
+/*   Updated: 2019/01/16 15:18:37 by anorjen          ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +78,14 @@ int				print_unsigned(va_list *ap, t_spec *spec, int *len);
 int				print_long_unsigned(va_list *ap, t_spec *spec, int *len);
 int				print_hex(va_list *ap, t_spec *spec, int *len);
 int				print_hex_upper(va_list *ap, t_spec *spec, int *len);
+
 int				print_float(va_list *ap, t_spec *spec, int *len);
 int				print_efloat(va_list *ap, t_spec *spec, int *len);
 int				print_efloat_upper(va_list *ap, t_spec *spec, int *len);
 int				print_afloat(va_list *ap, t_spec *spec, int *len);
 int				print_afloat_upper(va_list *ap, t_spec *spec, int *len);
+char			*ft_numtohex(long double num, int acc);
+
 int				print_unicode_char(wchar_t ch, t_spec *spec, int *len);
 int				print_byte_char(char ch, t_spec *spec, int *len);
 int				print_char(va_list *ap, t_spec *spec, int *len);

@@ -16,11 +16,11 @@ int main()
 	// ft_printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
 	// printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
 
-	ft_printf("%s\n", "abc");
+	// ft_printf("%s\n", "abc");
 
-	int g = ft_printf("%S\n", L"我是一只猫。");
-	int h = printf("%S\n", L"我是一只猫。");
-	printf("%d %d", g, h);
+	// int g = ft_printf("%S\n", L"我是一只猫。");
+	// int h = printf("%S\n", L"我是一只猫。");
+	// printf("%d %d", g, h);
 
 	// int c = ft_printf("1: %jd\n", -9223372036854775808);
 	// int d = printf("2: %jd\n", -9223372036854775808);
@@ -35,20 +35,44 @@ int main()
 	// c = printf("%ls", L"\u2620");  //printf("2: %ls\n", L"ααα");
 	// printf("%d %d\n", a, c);
 
-	// ft_printf("1: %e\n", -2.0);
-	// printf("2: %e\n", -2.0);
+	ft_printf("1: %e\n", -2.0);
+	printf("2: %e\n", -2.0);
 
-	// ft_printf("1: %e\n", 0.013);
-	// printf("2: %e\n", 0.013);
+	ft_printf("1: %e\n", 0.013);
+	printf("2: %e\n", 0.013);
 
-	// ft_printf("1: %e\n", 123.786);
-	// printf("2: %e\n", 123.786);
+	ft_printf("1: %e\n", 123.786);
+	printf("2: %e\n", 123.786);
 
-	// ft_printf("1: %e\n", 8.0003432121213);
-	// printf("2: %e\n", 8.0003432121213);
+	ft_printf("1: %e\n", 8.0003432121213);
+	printf("2: %e\n", 8.0003432121213);
 
-	// printf("%e\n", 8.76);
-	// printf("%a\n", 8.76);
+	ft_printf("1: %a\n", 1.25);
+	printf("2: %a\n", 1.25);
+
+	ft_printf("1: %a\n", 5.0);
+	printf("2: %a\n", 5.0);
+
+	ft_printf("1: %a\n", 0.25);
+	printf("2: %a\n", 0.25);
+
+	ft_printf("1: %.6a\n", 0.025);
+	printf("2: %.6a\n", 0.025);
+
+	ft_printf("1: %020.6a\n", 0.025);
+	printf("2: %020.6a\n", 0.025);
+
+	ft_printf("1: %020.6A\n", 0.025);
+	printf("2: %020.6A\n", 0.025);
+
+	// printf("2: %020.6e\n", 0.025);
+	// printf("2: %e\n", 0.025);
+	// printf("2: %.6e\n", 0.025);
+	// printf("2: %20.6e\n", 0.025);
+	// printf("2: %020.6g\n", 0.025);
+	// printf("2: %g\n", 0.025);
+	// printf("2: %.6g\n", 0.025);
+	// printf("2: %20.6g\n", 0.025);
 
 	// if (ft_printf("%#x %#llX\n", 42, 9223372036854775807) == printf("%#x %#llX\n", 42, 9223372036854775807))
 	// {
@@ -72,7 +96,9 @@ int main()
 
 	// ft_printf("1: {%f}{%F}\n", -1.42, -1.42);
 	// printf("2: {%f}{%F}\n\n", -1.42, -1.42);
-
+	double d = 23.45678;
+	printf("%-010.8f\n", d);
+	ft_printf("%-010.8f\n", d);
 	// ft_printf("1: %llx, %llx\n", 0, ULONG_MAX);
 	// printf("2: %llx, %llx\n", 0, ULONG_MAX);
 

@@ -14,7 +14,7 @@ SRCS_FILES =	ft_printf.c parse_body.c additional.c \
 				spec_c.c spec_s.c spec_p.c spec_percent.c \
 				spec_di.c spec_o.c spec_u.c spec_hex.c \
 				spec_f.c spec_e.c spec_a.c \
-				spec_b.c spec_n.c
+				spec_b.c spec_n.c ft_numtohex.c
 
 LIBFT_FUNCS =	atoi dtoa isdigit itoa_base printchr putchar putwchar putwstr \
 				putstr str_fixlen strchr strdel strdup \
