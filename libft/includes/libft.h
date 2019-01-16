@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:45:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/16 13:35:37 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:36:23 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char				*ft_dtoa(long double num, int acc);
 char				*ft_stoa(ssize_t nbr);
 void				ft_printchr(int counts, char c);
 int					ft_str_fixlen(char **str, char ch, int width, int side);
-void				ft_strupper(char *str);
+char				*ft_strupper(char *str);
 
 void				*ft_wmemset(wchar_t *str, int c, size_t n);
 void				*ft_wmemmove(wchar_t *dst, const wchar_t *src, size_t len);

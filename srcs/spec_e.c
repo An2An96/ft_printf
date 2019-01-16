@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spec_e.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:37:13 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/16 16:28:36 by anorjen          ###   ########.fr       */
+/*   Updated: 2019/01/16 17:35:31 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*ft_ee(long double num, int acc)
 	return (res);
 }
 
-char	*ft_efloattostr(va_list *ap, t_spec *spec)
+char		*ft_efloattostr(va_list *ap, t_spec *spec)
 {
 	char	*res;
 

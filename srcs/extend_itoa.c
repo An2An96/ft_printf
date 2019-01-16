@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_itoa_base.c                                     :+:      :+:    :+:   */
+/*   extend_itoa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 18:03:21 by anorjen           #+#    #+#             */
-/*   Updated: 2019/01/16 17:10:50 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:35:20 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char		*pf_uitoa_base(unsigned long long num, int base, int len)
 	return (res);
 }
 
-char	*ft_extend_itoa(long long n, int discharges, int need_sign)
+char		*ft_extend_itoa(long long n, int discharges, int need_sign)
 {
 	long long	unsig_n;
 	int			tmp;

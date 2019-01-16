@@ -17,13 +17,9 @@ int main()
 	// int b = printf("@main_ftprintf: %###-#0000 33...12..#0+0d_\n", 256);
 	// printf("%d %d\n", a, b);
 
-<<<<<<< HEAD
-	// ft_printf("%s\n", "abc");
-=======
 	int a = ft_printf("% Z%s", "test");
 	int b = printf("% Z%s", "test");
 	printf("%d %d", a, b);
->>>>>>> local-master
 
 	// int g = ft_printf("%S\n", L"我是一只猫。");
 	// int h = printf("%S\n", L"我是一只猫。");
