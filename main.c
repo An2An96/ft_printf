@@ -3,30 +3,33 @@
 #include <limits.h>
 #include "ft_printf.h"
 #include <wchar.h>
+#include <stdint.h>
 
 int main()
 {
-	// printf("test1 %lu %lu", sizeof(unsigned long), sizeof(size_t));
-	int a , c;
-	int b[] = {945, 946, 947, 0};
-	int *p;
-
-	p = &b[0];
+	uint64_t k = 4000000021200000;
+	int *p = &k;
 	// ft_printf("%+#10.5hhd %c %s %p", 123, 'A', "Hello World", b);
-	// ft_printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
-	// printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', b);
+	// ft_printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', p);
+	// printf("%% %ld %i %o %u %#x %#X %s %-10c %p\n", -2147483648, 2147483647, 45035996, -2147483644, 1024, 2048, "Hello", 'A', p);
 
-	ft_printf("%s\n", "abc");
+	// int a = ft_printf("@main_ftprintf: %###-#0000 33...12..#0+0d_\n", 256);
+	// int b = printf("@main_ftprintf: %###-#0000 33...12..#0+0d_\n", 256);
+	// printf("%d %d\n", a, b);
 
-	int g = ft_printf("%S\n", L"我是一只猫。");
-	int h = printf("%S\n", L"我是一只猫。");
-	printf("%d %d", g, h);
+	int a = ft_printf("% Z%s", "test");
+	int b = printf("% Z%s", "test");
+	printf("%d %d", a, b);
 
-	// int c = ft_printf("1: %jd\n", -9223372036854775808);
-	// int d = printf("2: %jd\n", -9223372036854775808);
-	// printf("%d %d", c, d);
+	// int g = ft_printf("%S\n", L"我是一只猫。");
+	// int h = printf("%S\n", L"我是一只猫。");
+	// printf("%d %d", g, h);
 
-	// ft_printf("%.5s %+d %i %o %u %x %c %p %%", "Hello World", INT_MAX, INT_MIN, 100, -100, 255, 'A', b);
+	// // c = ft_printf("1: %jd\n", -9223372036854775808);
+	// // int d = printf("2: %jd\n", -9223372036854775808);
+	// // printf("%d %d", c, d);
+
+	// // ft_printf("%.5s %+d %i %o %u %x %c %p %%", "Hello World", INT_MAX, INT_MIN, 100, -100, 255, 'A', b);
 	// ft_printf("%ld\n", LLONG_MAX);
 	// printf("%ld\n", LLONG_MAX);
 
@@ -68,7 +71,7 @@ int main()
 	// printf("{%05.s}", 0);
 
 	// ft_printf("1: %p\n", 0);
-	// printf("2: %p\n\n", 0);  Ǳ
+	// printf("2: %p\n\n", 0);
 
 	// ft_printf("1: {%f}{%F}\n", -1.42, -1.42);
 	// printf("2: {%f}{%F}\n\n", -1.42, -1.42);
@@ -101,12 +104,12 @@ int main()
 	// for(int i = 0; i < 30; i++)
 	// 	printf("%c\n", i);
 
-	// b = ft_printf("ft_printf: %0100llb %n Hello Man\n", 9223372036854775807, &a);
-	// printf("%d %d", a, b);
+	// // b = ft_printf("ft_printf: %0100llb %n Hello Man\n", 9223372036854775807, &a);
+	// // printf("%d %d", a, b);
 	// ft_printf("ft_printf: %030llb\n", -92233720);
 	// printf("printf:    %#030llb\n", 9223372036854775807);
 
-	//printf("%c[1;33mHello, world!\n", 27);
+	// printf("%c[1;33mHello, world!\n", 27);
 	// ft_printf("{%f}{%F}\n", -1444565444646.6465424242242454654, -1444565444646.6465424242242454654);
 	// printf("{%f}{%F}\n", -1444565444646.6465424242242454654, -1444565444646.6465424242242454654);
 
