@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:02 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 20:11:07 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:55:44 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static int	checkacc(va_list *ap, t_spec *spec, char **res, int *ox)
 	if (spec->accuracy == -1 || spec->accuracy > 0)
 	{
 		buf = *res;
-		if (CHECK_FLAG(FLAG_OCTOP) && value)
+		if (IS_FLAG(FLAG_OCTOP) && value)
 			*ox = 2;
-		if (CHECK_FLAG(FLAG_ZERO) && !(CHECK_FLAG(FLAG_MINUS)))
+		if (IS_FLAG(FLAG_ZERO) && !(IS_FLAG(FLAG_MINUS)))
 			spec->accuracy = (spec->accuracy == -1
 				? (spec->width - *ox) : spec->accuracy);
 		else
@@ -73,7 +73,7 @@ static void	ft_getstr(char **res, va_list *ap, t_spec *spec)
 			free(buf);
 			ox = 0;
 		}
-		ft_str_fixlen(res, ' ', spec->width - ox, CHECK_FLAG(FLAG_MINUS));
+		ft_str_fixlen(res, ' ', spec->width - ox, IS_FLAG(FLAG_MINUS));
 	}
 	if (ox != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:55:39 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 20:35:41 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:55:44 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			print_unsigned(va_list *ap, t_spec *spec, int *len)
 	if (spec->flags & FLAG_MINUS)
 		tmp = ft_str_fixlen(&res, ' ',
 			spec->width, spec->flags & FLAG_MINUS);
-	else if (spec->accuracy == -1 && CHECK_FLAG(FLAG_ZERO))
+	else if (spec->accuracy == -1 && IS_FLAG(FLAG_ZERO))
 		tmp = ft_str_fixlen(&res, '0', spec->width, 0);
 	else
 		tmp = ft_str_fixlen(&res, ' ', spec->width, 0);

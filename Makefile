@@ -9,22 +9,14 @@ C_INCLUDE_PATH += includes/ libft/includes
 FLAGS = -g -Wall -Werror -Wextra
 FLAGS += $(foreach path,$(C_INCLUDE_PATH),-I$(path))
 
-SRCS_FILES =	ft_printf.c additional.c pf_itoa_base.c ft_wcsjoin.c \
-				spec_percent.c \
-				spec_c.c \
-				spec_b.c \
-				spec_di.c \
-				spec_s.c \
-				spec_u.c \
-				spec_o.c \
-				spec_hex.c \
-				spec_f.c \
-				spec_p.c \
-				spec_n.c \
-				spec_e.c \
-				spec_a.c
+SRCS_FILES =	ft_printf.c parse_body.c additional.c \
+				pf_itoa_base.c ft_extend_itoa.c ft_wcsjoin.c \
+				spec_c.c spec_s.c spec_p.c spec_percent.c \
+				spec_di.c spec_o.c spec_u.c spec_hex.c \
+				spec_f.c spec_e.c spec_a.c \
+				spec_b.c spec_n.c
 
-LIBFT_FUNCS =	atoi dtoa isdigit itoa_base printchr putchar putwchar \
+LIBFT_FUNCS =	atoi dtoa isdigit itoa_base printchr putchar putwchar putwstr \
 				putstr str_fixlen strchr strdel strdup \
 				strjoin strlen strlower strnew strsub \
 				strupper uitoa_base strcpy memalloc memdel memmove memcpy \
@@ -43,23 +35,23 @@ all: $(NAME)
 $(OBJS): | $(OBJS_DIR)
 
 $(OBJS_DIR):
-	mkdir -p $@
-	mkdir -p $@/libft
+	@mkdir -p $@
+	@mkdir -p $@/libft
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	gcc $(FLAGS) -c $< -o $@ 
+	@gcc $(FLAGS) -c $< -o $@ 
 
 $(OBJS_DIR)/libft/%.o: libft/%.c
-	gcc $(FLAGS) -c $< -o $@
+	@gcc $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	@echo "Building...\n"
-	ar rc $@ $^
+	@ar rc $@ $^
 	@ranlib $@
 	@echo "Build complete"
 
 test: all
-	gcc -Iincludes/ -Ilibft/includes -L. -lftprintf main.c
+	@gcc -Iincludes/ -Ilibft/includes -L. -lftprintf main.c
 	@echo "Tests build"
 
 clean:

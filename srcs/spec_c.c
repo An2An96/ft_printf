@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:09:14 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 20:05:52 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:58:10 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	print_unicode_char(wchar_t ch, t_spec *spec, int *len)
 	i = 0;
 	ch_width = ft_wcs_char_len(ch);
 	spec->width -= ch_width;
-	if (CHECK_FLAG(FLAG_MINUS))
+	if (IS_FLAG(FLAG_MINUS))
 	{
 		ft_putwchar(ch);
 		while (i++ < spec->width)
@@ -29,7 +29,7 @@ int	print_unicode_char(wchar_t ch, t_spec *spec, int *len)
 	else
 	{
 		while (i++ < spec->width)
-			ft_putchar(CHECK_FLAG(FLAG_ZERO) ? '0' : ' ');
+			ft_putchar(IS_FLAG(FLAG_ZERO) ? '0' : ' ');
 		ft_putwchar(ch);
 	}
 	*len += (spec->width > 0 ? spec->width : 0) + ch_width;
@@ -41,7 +41,7 @@ int	print_byte_char(char ch, t_spec *spec, int *len)
 	int		i;
 
 	i = 0;
-	if (CHECK_FLAG(FLAG_MINUS))
+	if (IS_FLAG(FLAG_MINUS))
 	{
 		ft_putwchar(ch);
 		while (++i < spec->width)
@@ -50,7 +50,7 @@ int	print_byte_char(char ch, t_spec *spec, int *len)
 	else
 	{
 		while (++i < spec->width)
-			ft_putchar(CHECK_FLAG(FLAG_ZERO) ? '0' : ' ');
+			ft_putchar(IS_FLAG(FLAG_ZERO) ? '0' : ' ');
 		ft_putwchar(ch);
 	}
 	*len += spec->width > 0 ? spec->width : 1;

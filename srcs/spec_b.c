@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 17:32:20 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 20:32:52 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:55:44 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			print_binary(va_list *ap, t_spec *spec, int *len)
 	if (spec->flags & FLAG_MINUS)
 		tmp = ft_str_fixlen(&res, ' ',
 			spec->width, spec->flags & FLAG_MINUS);
-	else if (spec->accuracy == -1 && CHECK_FLAG(FLAG_ZERO))
+	else if (spec->accuracy == -1 && IS_FLAG(FLAG_ZERO))
 		tmp = ft_str_fixlen(&res, '0', spec->width, 0);
 	else
 		tmp = ft_str_fixlen(&res, ' ', spec->width, 0);

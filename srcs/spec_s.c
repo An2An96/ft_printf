@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:25:25 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 19:57:24 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:55:44 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int		print_unicode_string(wchar_t *value, t_spec *spec, int *len)
 		res = value;
 	if (!res)
 		return (0);
-	if (CHECK_FLAG(FLAG_MINUS))
+	if (IS_FLAG(FLAG_MINUS))
 		tmp = ft_wcsfixlen(&res, ' ', spec->width, 1);
 	else
 		tmp = ft_wcsfixlen(&res,
-			CHECK_FLAG(FLAG_ZERO) ? '0' : ' ', spec->width, 0);
+			IS_FLAG(FLAG_ZERO) ? '0' : ' ', spec->width, 0);
 	*len += ft_wcsbytes(res);
 	ft_putwstr(res);
 	free(res);
@@ -78,11 +78,11 @@ int		print_byte_string(char *value, t_spec *spec, int *len)
 		res = value;
 	if (!res)
 		return (0);
-	if (CHECK_FLAG(FLAG_MINUS))
+	if (IS_FLAG(FLAG_MINUS))
 		tmp = ft_str_fixlen(&res, ' ', spec->width, 1);
 	else
 		tmp = ft_str_fixlen(&res,
-			CHECK_FLAG(FLAG_ZERO) ? '0' : ' ', spec->width, 0);
+			IS_FLAG(FLAG_ZERO) ? '0' : ' ', spec->width, 0);
 	write(1, res, tmp);
 	free(res);
 	*len += tmp;

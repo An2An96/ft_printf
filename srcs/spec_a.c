@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spec_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:37:13 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/14 20:00:21 by anorjen          ###   ########.fr       */
+/*   Updated: 2019/01/16 13:55:44 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			print_afloat(va_list *ap, t_spec *spec, int *len)
 	int		ast;
 
 	c = ' ';
-	if (!CHECK_FLAG(FLAG_MINUS) && CHECK_FLAG(FLAG_ZERO))
+	if (!IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_ZERO))
 		c = '0';
 	ast = (spec->accuracy == -1 ? -1 : 0);
 	spec->accuracy = spec->accuracy == -1 ? 13 : spec->accuracy;
@@ -104,12 +104,12 @@ int			print_afloat(va_list *ap, t_spec *spec, int *len)
 		return (0);
 	ft_putstr("0x");
 	i = spec->width - ft_strlen(res);
-	if (i > 0 && !CHECK_FLAG(FLAG_MINUS))
+	if (i > 0 && !IS_FLAG(FLAG_MINUS))
 		ft_printchr(i - 2, c);
-	if (CHECK_FLAG(FLAG_MINUS) && CHECK_FLAG(FLAG_SPACE))
+	if (IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_SPACE))
 		ft_printchr(1, ' ');
 	ft_putstr(res);
-	if (i > 0 && CHECK_FLAG(FLAG_MINUS))
+	if (i > 0 && IS_FLAG(FLAG_MINUS))
 		ft_printchr(i, c);
 	free(res);
 	*len += (i > 0 ? spec->width : spec->width - i);
@@ -124,7 +124,7 @@ int			print_afloat_upper(va_list *ap, t_spec *spec, int *len)
 	int		ast;
 
 	c = ' ';
-	if (!CHECK_FLAG(FLAG_MINUS) && CHECK_FLAG(FLAG_ZERO))
+	if (!IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_ZERO))
 		c = '0';
 	spec->accuracy = spec->accuracy == -1 ? 13 : spec->accuracy;
 	ast = spec->accuracy == -1 ? -1 : 0;
@@ -137,12 +137,12 @@ int			print_afloat_upper(va_list *ap, t_spec *spec, int *len)
 		return (0);
 	ft_putstr("0x");
 	i = spec->width - ft_strlen(res);
-	if (i > 0 && !CHECK_FLAG(FLAG_MINUS))
+	if (i > 0 && !IS_FLAG(FLAG_MINUS))
 		ft_printchr(i - 2, c);
-	if (CHECK_FLAG(FLAG_MINUS) && CHECK_FLAG(FLAG_SPACE))
+	if (IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_SPACE))
 		ft_printchr(1, ' ');
 	ft_putstr(res);
-	if (i > 0 && CHECK_FLAG(FLAG_MINUS))
+	if (i > 0 && IS_FLAG(FLAG_MINUS))
 		ft_printchr(i, c);
 	free(res);
 	*len += (i > 0 ? spec->width : spec->width - i);

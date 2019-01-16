@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:45:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 19:49:15 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:35:37 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ wchar_t				*ft_wcsnew(size_t size);
 wchar_t				*ft_wcscpy(wchar_t *dest, const wchar_t *src);
 wchar_t				*ft_wcsjoin(wchar_t const *s1, wchar_t const *s2);
 wchar_t				*ft_wcsdup(const wchar_t *src);
+void				ft_putwstr(wchar_t const *s);
 
 #endif

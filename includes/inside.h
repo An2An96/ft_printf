@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/15 20:38:08 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:57:57 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include "libft.h"
 
-# define CHECK_FLAG(f)	(spec->flags & f)
+# define IS_FLAG(f)	(spec->flags & f)
 
 # define FLAG_MINUS		1
 # define FLAG_PLUS		2
@@ -27,13 +27,13 @@
 typedef enum	e_sp_size
 {
 	SIZE_NONE,
-	SIZE_L,
-	SIZE_l,
-	SIZE_ll,
 	SIZE_hh,
 	SIZE_h,
+	SIZE_l,
+	SIZE_ll,
 	SIZE_j,
-	SIZE_z
+	SIZE_z,
+	SIZE_L
 }				t_sp_size;
 
 typedef struct	s_value_types {
@@ -83,12 +83,15 @@ int				print_unicode_char(wchar_t ch, t_spec *spec, int *len);
 int				print_byte_char(char ch, t_spec *spec, int *len);
 int				print_char(va_list *ap, t_spec *spec, int *len);
 int				print_long_char(va_list *ap, t_spec *spec, int *len);
+int				print_byte_string(char *value, t_spec *spec, int *len);
 int				print_string(va_list *ap, t_spec *spec, int *len);
 int				print_long_string(va_list *ap, t_spec *spec, int *len);
 int				print_pointer(va_list *ap, t_spec *spec, int *len);
 int				print_binary(va_list *ap, t_spec *spec, int *len);
 
 char			*pf_uitoa_base(unsigned long long num, int base, int len);
+char			*ft_extend_itoa(long long n, int discharges, int need_sign);
+int				get_number_width(int number);
 
 size_t			ft_wcsbytes(const wchar_t *s);
 wchar_t			*ft_wcscut(wchar_t const *s, size_t len);
