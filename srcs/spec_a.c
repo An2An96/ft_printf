@@ -6,7 +6,7 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:37:13 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/16 15:51:59 by anorjen          ###   ########.fr       */
+/*   Updated: 2019/01/16 17:03:28 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,27 +67,27 @@ int			print_afloat(va_list *ap, t_spec *spec, int *len)
 	char	*res;
 	char	*str;
 	char	c;
-	int		tmp;
 	int		side;
+	int		tmp;
 
 	side = 0;
 	c = (!IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_ZERO) ? '0' : ' ');
 	if ((res = ft_afloattostr(ap, spec)) == NULL)
 		return (0);
-	write(1, "0x", 3);
 	if (spec->width - ft_strlen(res) > 0)
 		side = (IS_FLAG(FLAG_MINUS) ? 1 : 0);
-	tmp = ft_str_fixlen(&res, c, spec->width - 2, side);
+	tmp = ft_str_fixlen(&res, c, spec->width - 2, side) + 2;
+	str = ft_strjoin("0x", res);
+	free(res);
 	if (IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_SPACE))
 	{
-		str = res;
-		res = ft_strjoin(" ", res);
-		free(str);
-		tmp++;
+		ft_putchar(' ');
+		write(1, str, tmp++);
 	}
-	write(1, res, tmp);
-	free(res);
-	*len += tmp + 2;
+	else
+		write(1, str, tmp);
+	free(str);
+	*len += tmp;
 	return (1);
 }
 
@@ -96,92 +96,26 @@ int			print_afloat_upper(va_list *ap, t_spec *spec, int *len)
 	char	*res;
 	char	*str;
 	char	c;
-	int		tmp;
 	int		side;
+	int		tmp;
 
 	side = 0;
 	c = (!IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_ZERO) ? '0' : ' ');
 	if ((res = ft_afloattostr(ap, spec)) == NULL)
 		return (0);
-	write(1, "0x", 3);
 	if (spec->width - ft_strlen(res) > 0)
 		side = (IS_FLAG(FLAG_MINUS) ? 1 : 0);
-	tmp = ft_str_fixlen(&res, c, spec->width - 2, side);
+	tmp = ft_str_fixlen(&res, c, spec->width - 2, side) + 2;
+	str = ft_strjoin("0x", res);
+	free(res);
 	if (IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_SPACE))
 	{
-		str = res;
-		res = ft_strjoin(" ", res);
-		free(str);
-		tmp++;
+		ft_putchar(' ');
+		write(1, ft_strupper(str), tmp++);
 	}
-	ft_strupper(res);
-	write(1, res, tmp);
-	free(res);
-	*len += tmp + 2;
+	else
+		write(1, ft_strupper(str), tmp);
+	free(str);
+	*len += tmp;
 	return (1);
 }
-
-// int			print_afloat(va_list *ap, t_spec *spec, int *len)
-// {
-// 	char	*res;
-// 	int		i;
-// 	char	c;
-// 	int		ast;
-
-// 	c = ' ';
-// 	if (!IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_ZERO))
-// 		c = '0';
-// 	ast = (spec->accuracy == -1 ? -1 : 0);
-// 	spec->accuracy = spec->accuracy == -1 ? 13 : spec->accuracy;
-// 	if (spec->size == SIZE_L)
-// 		res = ft_aA(va_arg(*ap, long double), spec->accuracy, ast);
-// 	else
-// 		res = ft_aA(va_arg(*ap, double), spec->accuracy, ast);
-// 	if (!res)
-// 		return (0);
-// 	ft_putstr("0x");
-// 	i = spec->width - ft_strlen(res);
-// 	if (i > 0 && !IS_FLAG(FLAG_MINUS))
-// 		ft_printchr(i - 2, c);
-// 	if (IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_SPACE))
-// 		ft_printchr(1, ' ');
-// 	ft_putstr(res);
-// 	if (i > 0 && IS_FLAG(FLAG_MINUS))
-// 		ft_printchr(i, c);
-// 	free(res);
-// 	*len += (i > 0 ? spec->width : spec->width - i);
-// 	return (1);
-// }
-
-// int			print_afloat_upper(va_list *ap, t_spec *spec, int *len)
-// {
-// 	char	*res;
-// 	int		i;
-// 	char	c;
-// 	int		ast;
-
-// 	c = ' ';
-// 	if (!IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_ZERO))
-// 		c = '0';
-// 	spec->accuracy = spec->accuracy == -1 ? 13 : spec->accuracy;
-// 	ast = spec->accuracy == -1 ? -1 : 0;
-// 	if (spec->size == SIZE_L)
-// 		res = ft_aA(va_arg(*ap, long double), spec->accuracy, ast);
-// 	else
-// 		res = ft_aA(va_arg(*ap, double), spec->accuracy, ast);
-// 	ft_strupper(res);
-// 	if (!res)
-// 		return (0);
-// 	ft_putstr("0x");
-// 	i = spec->width - ft_strlen(res);
-// 	if (i > 0 && !IS_FLAG(FLAG_MINUS))
-// 		ft_printchr(i - 2, c);
-// 	if (IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_SPACE))
-// 		ft_printchr(1, ' ');
-// 	ft_putstr(res);
-// 	if (i > 0 && IS_FLAG(FLAG_MINUS))
-// 		ft_printchr(i, c);
-// 	free(res);
-// 	*len += (i > 0 ? spec->width : spec->width - i);
-// 	return (1);
-// }

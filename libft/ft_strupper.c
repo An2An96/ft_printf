@@ -6,13 +6,13 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 19:31:29 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/26 19:31:49 by anorjen          ###   ########.fr       */
+/*   Updated: 2019/01/16 16:48:21 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strupper(char *str)
+char	*ft_strupper(char *str)
 {
 	int	i;
 
@@ -22,4 +22,5 @@ void	ft_strupper(char *str)
 		if (str[i] >= 'a' && str[i] <= 'z')
 			str[i] -= 32;
 	}
+	return (str);
 }
