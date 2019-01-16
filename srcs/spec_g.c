@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 16:29:18 by anorjen           #+#    #+#             */
-/*   Updated: 2019/01/16 18:17:50 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:29:47 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ static char	*ft_gg(va_list *ap, t_spec *spec)
 	char	*res2;
 	int		i;
 
+	if (spec->accuracy == -1)
+		spec->accuracy = 5;
+	else
+		spec->accuracy--;
 	va_copy(ap_copy, *ap);
 	res1 = ft_floattostr(ap, spec);
 	res2 = ft_efloattostr(&ap_copy, spec);
