@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:08:21 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/16 15:06:14 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:07:52 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,15 @@ static int	spec_body_handler(
 	res = 1;
 	if (!is_spec_body_char(*format))
 	{
-		if ((spec_idx = find_specifier(*format)) >= 0 || format - *start > 1)
-		{
-			*start = ft_strsub(*start, 1, format - *start - 1);
-			if (spec_idx >= 0)
-				res = specifier_handler(spec_idx, start, ap, len);
-			else
-			{
-				parse_spec_body(*start, ap, &spec);
-				ft_strdel(start);
-				if ((res = print_byte_char(*format, &spec, len)) == 0)
-					*len = -1;
-			}
-		}
+		*start = ft_strsub(*start, 1, format - *start - 1);
+		if ((spec_idx = find_specifier(*format)) >= 0)
+			res = specifier_handler(spec_idx, start, ap, len);
 		else
 		{
-			ft_putchar(*format);
-			(*len)++;
+			parse_spec_body(*start, ap, &spec);
+			ft_strdel(start);
+			if ((res = print_byte_char(*format, &spec, len)) == 0)
+				*len = -1;
 			*start = NULL;
 		}
 	}
