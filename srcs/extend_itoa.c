@@ -6,7 +6,7 @@
 /*   By: rschuppe <rschuppe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 18:03:21 by anorjen           #+#    #+#             */
-/*   Updated: 2018/12/27 22:07:09 by rschuppe         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:10:50 by rschuppe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,34 @@ char		*pf_uitoa_base(unsigned long long num, int base, int len)
 		num /= base;
 	}
 	res[digs] = '\0';
+	return (res);
+}
+
+char	*ft_extend_itoa(long long n, int discharges, int need_sign)
+{
+	long long	unsig_n;
+	int			tmp;
+	char		*res;
+	char		sign;
+
+	sign = (n < 0);
+	tmp = 1;
+	unsig_n = n;
+	while ((n /= 10))
+		tmp++;
+	discharges = discharges > tmp ? discharges : tmp;
+	discharges += (sign || need_sign);
+	res = ft_strnew(discharges);
+	if (res)
+	{
+		while (discharges)
+		{
+			n = unsig_n % 10;
+			res[--discharges] = ABS(n) + '0';
+			unsig_n /= 10;
+		}
+		if (sign || need_sign)
+			res[0] = sign ? '-' : '+';
+	}
 	return (res);
 }
