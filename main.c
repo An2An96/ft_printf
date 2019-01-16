@@ -7,6 +7,10 @@
 
 int main()
 {
+	int a;
+	int b;
+	int c;
+
 	uint64_t k = 4000000021200000;
 	int *p = &k;
 	// ft_printf("%+#10.5hhd %c %s %p", 123, 'A', "Hello World", b);
@@ -17,9 +21,9 @@ int main()
 	// int b = printf("@main_ftprintf: %###-#0000 33...12..#0+0d_\n", 256);
 	// printf("%d %d\n", a, b);
 
-	int a = ft_printf("% Z%s", "test");
-	int b = printf("% Z%s", "test");
-	printf("%d %d", a, b);
+	// int a = ft_printf("% Z%s", "test");
+	// int b = printf("% Z%s", "test");
+	// printf("%d %d", a, b);
 
 	// int g = ft_printf("%S\n", L"我是一只猫。");
 	// int h = printf("%S\n", L"我是一只猫。");
@@ -84,49 +88,49 @@ int main()
 /*
 **  g G test
 */
-	a = ft_printf("1: %e\n", -2.0);
-	c = printf("2: %e\n", -2.0);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %e\n", -2.0);
+	// c = printf("2: %e\n", -2.0);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
-	a = ft_printf("1: %g\n", -2.0);
-	c = printf("2: %g\n", -2.0);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %g\n", -2.0);
+	// c = printf("2: %g\n", -2.0);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
-	a = ft_printf("1: %g\n", 0.013);
-	c = printf("2: %g\n", 0.013);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %g\n", 0.013);
+	// c = printf("2: %g\n", 0.013);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
-	a = ft_printf("1: %g\n", 123.786);
-	c = printf("2: %g\n", 123.786);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %g\n", 123.786);
+	// c = printf("2: %g\n", 123.786);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
-	a = ft_printf("1: %g\n", 8.0003432121213);
-	c = printf("2: %g\n", 8.0003432121213);
-	printf("1: %d; 2: %d\n\n", a, c);
+	a = ft_printf("{%.19f}{%.19F}\n", 1213.42, 1213.42);
+	c = printf("{%.19f}{%.19F}\n", 1213.42, 1213.42);
+	printf("1: %d; 2: %d\n", a, c);
 
-	a = ft_printf("1: %g\n", 1.25);
-	c = printf("2: %g\n", 1.25);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %g\n", 1.25);
+	// c = printf("2: %g\n", 1.25);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
-	a = ft_printf("1: %g\n", 5.0);
-	c = printf("2: %g\n", 5.0);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %g\n", 5.0);
+	// c = printf("2: %g\n", 5.0);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
-	a = ft_printf("1: %G\n", 0.25);
-	c = printf("2: %G\n", 0.25);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %G\n", 0.25);
+	// c = printf("2: %G\n", 0.25);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
-	a = ft_printf("1: %.6G\n", 0.025);
-	c = printf("2: %.6G\n", 0.025);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %.6G\n", 0.025);
+	// c = printf("2: %.6G\n", 0.025);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
-	a = ft_printf("1: %020.6g\n", 0.025);
-	c = printf("2: %020.6g\n", 0.025);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %020.6g\n", 0.025);
+	// c = printf("2: %020.6g\n", 0.025);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
-	a = ft_printf("1: %020.6G\n", 0.025);
-	c = printf("2: %020.6G\n", 0.025);
-	printf("1: %d; 2: %d\n\n", a, c);
+	// a = ft_printf("1: %020.6G\n", 0.025);
+	// c = printf("2: %020.6G\n", 0.025);
+	// printf("1: %d; 2: %d\n\n", a, c);
 
 	// printf("2: %020.6e\n", 0.025);
 	// printf("2: %e\n", 0.025);
@@ -159,9 +163,9 @@ int main()
 
 	// ft_printf("1: {%f}{%F}\n", -1.42, -1.42);
 	// printf("2: {%f}{%F}\n\n", -1.42, -1.42);
-	double d = 23.45678;
-	printf("%-010.8f\n", d);
-	ft_printf("%-010.8f\n", d);
+	// double d = 23.45678;
+	// printf("%-010.8f\n", d);
+	// ft_printf("%-010.8f\n", d);
 	// ft_printf("1: %llx, %llx\n", 0, ULONG_MAX);
 	// printf("2: %llx, %llx\n", 0, ULONG_MAX);
 

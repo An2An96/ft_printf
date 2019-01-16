@@ -19,7 +19,7 @@ SRCS_FILES =	ft_printf.c parse_body.c additional.c \
 
 LIBFT_FUNCS =	atoi dtoa isdigit itoa_base printchr putchar putwchar putwstr \
 				putstr str_fixlen strchr strdel strdup \
-				strjoin strlen strlower strnew strsub \
+				strjoin strlen strlower strnew strsub strcat \
 				strupper uitoa_base strcpy memalloc memdel memmove memcpy \
 				memset pow putstr_fd stoa tolower \
 				wmemmove wmemset wcslen wcsnew wcscpy wcsjoin wcsdup
