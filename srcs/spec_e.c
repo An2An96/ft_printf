@@ -6,7 +6,7 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 18:37:13 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/16 15:49:59 by anorjen          ###   ########.fr       */
+/*   Updated: 2019/01/16 15:51:59 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ int			print_efloat(va_list *ap, t_spec *spec, int *len)
 	int		side;
 
 	side = 0;
-	c = (!CHECK_FLAG(FLAG_MINUS) && CHECK_FLAG(FLAG_ZERO) ? '0' : ' ');
+	c = (!IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_ZERO) ? '0' : ' ');
 	if ((res = ft_efloattostr(ap, spec)) == NULL)
 		return (0);
 	if (spec->width - ft_strlen(res) > 0)
-		side = (CHECK_FLAG(FLAG_MINUS) ? 1 : 0);
+		side = (IS_FLAG(FLAG_MINUS) ? 1 : 0);
 	tmp = ft_str_fixlen(&res, c, spec->width, side);
-	if (CHECK_FLAG(FLAG_MINUS) && CHECK_FLAG(FLAG_SPACE))
+	if (IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_SPACE))
 	{
 		str = res;
 		res = ft_strjoin(" ", res);
@@ -107,13 +107,13 @@ int			print_efloat_upper(va_list *ap, t_spec *spec, int *len)
 	int		side;
 
 	side = 0;
-	c = (!CHECK_FLAG(FLAG_MINUS) && CHECK_FLAG(FLAG_ZERO) ? '0' : ' ');
+	c = (!IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_ZERO) ? '0' : ' ');
 	if ((res = ft_efloattostr(ap, spec)) == NULL)
 		return (0);
 	if (spec->width - ft_strlen(res) > 0)
-		side = (CHECK_FLAG(FLAG_MINUS) ? 1 : 0);
+		side = (IS_FLAG(FLAG_MINUS) ? 1 : 0);
 	tmp = ft_str_fixlen(&res, c, spec->width, side);
-	if (CHECK_FLAG(FLAG_MINUS) && CHECK_FLAG(FLAG_SPACE))
+	if (IS_FLAG(FLAG_MINUS) && IS_FLAG(FLAG_SPACE))
 	{
 		str = res;
 		res = ft_strjoin(" ", res);
