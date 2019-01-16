@@ -6,7 +6,7 @@
 /*   By: anorjen <anorjen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 16:09:16 by rschuppe          #+#    #+#             */
-/*   Updated: 2019/01/16 15:52:37 by anorjen          ###   ########.fr       */
+/*   Updated: 2019/01/16 16:29:05 by anorjen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ int				print_efloat_upper(va_list *ap, t_spec *spec, int *len);
 int				print_afloat(va_list *ap, t_spec *spec, int *len);
 int				print_afloat_upper(va_list *ap, t_spec *spec, int *len);
 char			*ft_numtohex(long double num, int acc);
+char			*ft_floattostr(va_list *ap, t_spec *spec);
+char			*ft_efloattostr(va_list *ap, t_spec *spec);
+int				print_gfloat(va_list *ap, t_spec *spec, int *len);
+int				print_gfloat_upper(va_list *ap, t_spec *spec, int *len);
 
 int				print_unicode_char(wchar_t ch, t_spec *spec, int *len);
 int				print_byte_char(char ch, t_spec *spec, int *len);
