@@ -10,7 +10,7 @@ OBJS_DIR = ./obj
 C_INCLUDE_PATH += includes/
 C_INCLUDE_PATH += $(LIBFT_DIR)/includes
 
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 FLAGS += $(foreach path,$(C_INCLUDE_PATH),-I$(path))
 
 SRCS_FILES =	ft_printf.c parse_body.c additional.c \
