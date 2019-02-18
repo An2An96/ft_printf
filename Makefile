@@ -1,10 +1,14 @@
+############################		Variables		############################
 NAME = libftprintf.a
+
+LIBFT_DIR = ../libft
 
 INC_DIR = ./includes
 SRCS_DIR = ./srcs
 OBJS_DIR = ./obj
 
-C_INCLUDE_PATH += includes/ libft/includes
+C_INCLUDE_PATH += includes/
+C_INCLUDE_PATH += $(LIBFT_DIR)/includes
 
 FLAGS = -g -Wall -Werror -Wextra
 FLAGS += $(foreach path,$(C_INCLUDE_PATH),-I$(path))
@@ -31,6 +35,8 @@ OBJS += $(foreach func,$(LIBFT_FUNCS),$(OBJS_DIR)/libft/ft_$(func).o)
 
 FLAGS += $(foreach fun,$(LIBFT_FUNS),-Dft_$(fun)=ft_printf_libft_$(fun))
 
+############################		  Rules 		############################
+
 all: $(NAME)
 
 $(OBJS): | $(OBJS_DIR)
@@ -42,7 +48,7 @@ $(OBJS_DIR):
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@gcc $(FLAGS) -c $< -o $@ 
 
-$(OBJS_DIR)/libft/%.o: libft/%.c
+$(OBJS_DIR)/libft/%.o: $(LIBFT_DIR)/srcs/%.c
 	@gcc $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
@@ -66,3 +72,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+#	by rschuppe
