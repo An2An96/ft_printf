@@ -21,13 +21,6 @@ SRCS_FILES =	ft_printf.c parse_body.c additional.c \
 				spec_b.c spec_n.c ft_numtohex.c \
 				spec_g.c
 
-LIBFT_FUNCS =	atoi dtoa isdigit itoa_base printchr putchar putwchar putwstr \
-				putstr str_fixlen strchr strdel strdup \
-				strjoin strlen strlower strnew strsub \
-				strupper uitoa_base strcpy memalloc memdel memmove memcpy \
-				memset pow putstr_fd stoa tolower \
-				wmemmove wmemset wcslen wcsnew wcscpy wcsjoin wcsdup
-
 SRCS =	$(foreach file,$(SRCS_FILES),$(SRCS_DIR)/$(file))
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS_FILES:%.c=%.o))
@@ -48,9 +41,6 @@ $(OBJS_DIR):
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@gcc $(FLAGS) -c $< -o $@ 
 
-$(OBJS_DIR)/libft/%.o: $(LIBFT_DIR)/srcs/%.c
-	@gcc $(FLAGS) -c $< -o $@
-
 $(NAME): $(OBJS)
 	@echo "Building...\n"
 	@ar rc $@ $^
@@ -58,7 +48,7 @@ $(NAME): $(OBJS)
 	@echo "Build complete"
 
 test: all
-	@gcc -Iincludes/ -Ilibft/includes -L. -lftprintf main.c
+	@gcc -Iincludes/ -Ilibft/includes -L$(LIBFT_DIR) -lft -L. -lftprintf main.c
 	@echo "Tests build"
 
 clean:
